@@ -1,4 +1,5 @@
 # https://pypi.org/project/yfinance/
+# Display sotck  candle data with bollinger brand
 import yfinance as yf
 import pandas as pd
 from stock_pandas import StockDataFrame
@@ -7,6 +8,9 @@ import numpy as np
 data = yf.download(  # or pdr.get_data_yahoo(...
         # tickers list or string as well
         tickers = "SPY",
+        # Fetching data for multiple stickers
+        # tickers = "SPY AAPL MSFT",
+
 
         # use "period" instead of start/end
         # valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max
