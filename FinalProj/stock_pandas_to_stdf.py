@@ -65,6 +65,9 @@ if __name__ == "__main__":
     stock = sdts.data_processing(columns,stockdf)
     df = sdts.to_df(stock)
     stockdf = data_processing(StockDataFrame(df))
+    df = sdts.to_df(stockdf)
     print(stockdf.head(5))
     print(stockdf.shape)
+    df.to_excel("./Shijing_try/data_v1.xlsx",engine="xlsxwriter")
+
 
