@@ -3,6 +3,7 @@
 import yfinance as yf
 import pandas as pd
 from stock_pandas import StockDataFrame
+
 msft = yf.Ticker("MSFT")
 
 # get stock info
@@ -11,3 +12,5 @@ print(msft.info)
 
 # get historical market data
 hist = msft.history(period="ytd")
+# stock = StockDataFrame(pd.read_csv('./Shijing_try/Tencent.csv'))
+# print(stock)
