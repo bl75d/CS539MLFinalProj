@@ -1,4 +1,4 @@
-﻿# ReadMe
+﻿# Stock Market Prediction AI
 
 ## Configuration:
 

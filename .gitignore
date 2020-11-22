@@ -1,0 +1,62 @@
+# Storage Files
+*.csv
+
+# Document Files
+*.pdf
+*.PDF
+*.docx
+ 
+# Image files
+*.png
+*.PNG
+*.jpg
+*.JPG
+*.jpeg
+
+# Binary Files
+*.py[cod]
+*.pkl
+
+# Checkpoints
+*ckpt*
+checkpoint
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDEs and cache
+.idea/
+.vscode/
+__pycache__/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# Other
+*.log
