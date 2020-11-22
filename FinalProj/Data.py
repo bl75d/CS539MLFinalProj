@@ -7,7 +7,7 @@ import mplfinance as mpf
 import numpy as np
 data = yf.download(  # or pdr.get_data_yahoo(...
         # tickers list or string as well
-        tickers = "SPY",
+        tickers = "AAPL",
         # Fetching data for multiple stickers
         # tickers = "SPY AAPL MSFT",
 
@@ -16,7 +16,7 @@ data = yf.download(  # or pdr.get_data_yahoo(...
         # valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max
         # (optional, default is '1mo')
         # period = "ytd",
-        period="2y",
+        period="3y",
 
         # fetch data by interval (including intraday if period < 60 days)
         # valid intervals: 1m,2m,5m,15m,30m,60m,90m,1h,1d,5d,1wk,1mo,3mo
