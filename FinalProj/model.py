@@ -32,8 +32,6 @@ def create_model(model_class=LSTM_Model, **kwargs):
     
     return model
 
-print(create_model(layer_width=10).summary())
-
 def load_trained(model, filepath):
     """Load a previously trained model from a checkpoint.
 
