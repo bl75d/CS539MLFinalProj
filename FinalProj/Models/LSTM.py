@@ -1,36 +1,44 @@
-import numpy
-import matplotlib.pyplot as plt
-import pandas
-import math
+# built-in imports
+
+# Data structure imports
+
+# tensorflow imports
 import tensorflow as tf
+from tensorflow.python.keras.layers import Dense, Dropout, Flatten, LSTM, TimeDistributed
+from tensorflow.python.keras.models import Sequential
 
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, BatchNormalization, Dropout, Activation
-from tensorflow.keras.layers import LSTM, GRU
-from sklearn.metrics import mean_squared_error
-from tensorflow.keras.optimizers import Adam, SGD, RMSprop
-from sklearn.metrics import mean_squared_error
-from tensorflow.keras.optimizers import Adam, SGD, RMSprop
-from sklearn.preprocessing import MinMaxScaler
+# custom imports
+from Models.Abstract import Abstract_Model
 
-def lstm(train_features,test_features,features,train_label,test_label):
-    train_features= train_features.reshape(train_features.shape[0], 1, train_features.shape[1])
-    train_features.shape
+class LSTM_Model(Abstract_Model):
+    def __init__(self, kwargs):
+        """
+        Set up LSTM Model specifics. Calls parent method to setup common variables.
 
-    test_features= test_features.reshape(test_features.shape[0], 1, test_features.shape[1])
-    test_features.shape
+        Args:
+            kwargs (dict): key,value pairs of all variables
+        """
 
-    # Model building
-    model = Sequential()
-    model.add(GRU(256, input_shape=(1, features), return_sequences=True ))
-    model.add(Dropout(0.25))
-    model.add(LSTM(256))
-    model.add(Dropout(0.25))
-    model.add(Dense(64, activation='relu'))
-    model.add(Dense(1))
-    model.summary()
-    # use optimizer to reduce loss and find best parameters
-    model.compile(loss='mean_squared_error', optimizer=Adam(0.0005), metrics=['mean_squared_error'])
+        super().__init__(kwargs)
 
-    # results= model.fit(train_features, train_label, epochs=70, batch_size=128, validation_data=(test_features, test_label))
-    return model
+    def generate(self):
+        """
+        Generate function of the subclass overriding the abstract method.
+
+        Returns:
+            tf.python.keras.models.*: Model that is generated per structure.
+        """
+
+        shape = self.train_data_shape[:-1]
+
+        model = Sequential()
+        model.add(LSTM(self.layer_width, input_shape=shape, return_sequences=True, go_backwards=False))
+        model.add(TimeDistributed(Dense(self.layer_width, activation='relu')))
+        model.add(TimeDistributed(Dense(self.layer_width, activation='relu')))
+        model.add(Dropout(self.dropout_rate/2))
+        model.add(TimeDistributed(Dense(self.layer_width, activation='relu')))
+        model.add(Flatten())
+        model.add(Dropout(self.dropout_rate))
+        model.add(Dense(3, activation="softmax"))
+        
+        return model
