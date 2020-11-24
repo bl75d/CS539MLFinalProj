@@ -12,7 +12,6 @@ msft.info
 
 # get historical market data
 hist = msft.history(period="ytd")
-<<<<<<< HEAD
 print(hist)
 # #
 # {'zip': '98052-6399',
@@ -64,7 +63,3 @@ print(hist)
 #  'averageVolume': 32138892,
 #  'priceToSalesTrailing12Months': 10.916714,
 #  'dayLow': 209.93, 'ask': 212.11, 'ytdReturn': None, 'askSize': 800, 'volume': 24792746, 'fiftyTwoWeekHigh': 232.86, 'forwardPE': 28.474531, 'fromCurrency': None, 'fiveYearAvgDividendYield': 1.78, 'fiftyTwoWeekLow': 132.52, 'bid': 211.96, 'tradeable': False, 'dividendYield': 0.0106, 'bidSize': 1000, 'dayHigh': 212.99, 'exchange': 'NMS', 'shortName': 'Microsoft Corporation', 'longName': 'Microsoft Corporation', 'exchangeTimezoneName': 'America/New_York', 'exchangeTimezoneShortName': 'EST', 'isEsgPopulated': False, 'gmtOffSetMilliseconds': '-18000000', 'quoteType': 'EQUITY', 'symbol': 'MSFT', 'messageBoardId': 'finmb_21835', 'market': 'us_market', 'annualHoldingsTurnover': None, 'enterpriseToRevenue': 10.476, 'beta3Year': None, 'profitMargins': 0.32285, 'enterpriseToEbitda': 22.623, '52WeekChange': 0.4120953, 'morningStarRiskRating': None, 'forwardEps': 7.46, 'revenueQuarterlyGrowth': None, 'sharesOutstanding': 7560500224, 'fundInceptionDate': None, 'annualReportExpenseRatio': None, 'bookValue': 16.313, 'sharesShort': 36796420, 'sharesPercentSharesOut': 0.0049, 'fundFamily': None, 'lastFiscalYearEnd': 1593475200, 'heldPercentInstitutions': 0.71892, 'netIncomeToCommon': 47495999488, 'trailingEps': 6.199, 'lastDividendValue': 0.56, 'SandP52WeekChange': 0.14958727, 'priceToBook': 13.021517, 'heldPercentInsiders': 0.00059, 'nextFiscalYearEnd': 1656547200, 'mostRecentQuarter': 1601424000, 'shortRatio': 1.27, 'sharesShortPreviousMonthDate': 1601424000, 'floatShares': 7448222604, 'enterpriseValue': 1541136449536, 'threeYearAverageReturn': None, 'lastSplitDate': 1045526400, 'lastSplitFactor': '2:1', 'legalType': None, 'lastDividendDate': 1605657600, 'morningStarOverallRating': None, 'earningsQuarterlyGrowth': 0.301, 'dateShortInterest': 1604016000, 'pegRatio': 2.15, 'lastCapGain': None, 'shortPercentOfFloat': 0.0049, 'sharesShortPriorMonth': 39634230, 'category': None, 'fiveYearAverageReturn': None, 'regularMarketPrice': 211.38, 'logo_url': 'https://logo.clearbit.com/microsoft.com'}
-=======
-# stock = StockDataFrame(pd.read_csv('./Shijing_try/Tencent.csv'))
-# print(stock)
->>>>>>> bbb853fad4729823e812b3590cc71418b2a9473a
