@@ -37,3 +37,4 @@ response = requests.get(requests_string).content
 rawData=pd.read_csv(io.StringIO(response.decode('utf-8')))
 #rawData has colums as [t,o,h,l,c,v]
 print(rawData)
+rawData=rawData[['o','c','h','l','v']]

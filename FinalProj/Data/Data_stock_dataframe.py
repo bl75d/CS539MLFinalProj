@@ -182,7 +182,7 @@ def GetStockData(ticker,prd,intvl):
         # stock['macd']=stock['macd'].fillna(0)
         stock=stock.fillna(method='ffill')
         stock=stock.fillna(0)
-        print(stock.isnull().sum())
+        # print(stock.isnull().sum())
 
         # label(macd based)
         x=np.asarray(stock['macd'])
@@ -216,8 +216,9 @@ def GetStockData(ticker,prd,intvl):
         for i in valleys:
                 stock["label"].iloc[i]=-1
 
-        # print(stock["label"])
-        # print(stock)
-
-        return stock
+        print(stock.shape)
+        label=stock['label']
+        stock.drop(columns='label')
+        print(stock.shape)
+        return stock,label
         # print(stock.shape)
