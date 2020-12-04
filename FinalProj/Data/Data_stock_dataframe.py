@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 import stock_pandas as pds
 from scipy.signal import savgol_filter
+from scipy.ndimage.interpolation import shift
+
 
 # request one stock and generating its labels
 def GetStockData(ticker,prd,intvl):
@@ -219,7 +221,7 @@ def GetStockData(ticker,prd,intvl):
 
         stock['style:bullish']=pdseries['style:bullish']*1
         stock['increase:(ma:20,close),3']=pdseries['increase:(ma:20,close),3']*1
-        # stock['style:bullish']=
+
         # naive label
         # stock['label']=stockdf['rsi_6']//10
         # stock['label'] =stock['label'].fillna(method='ffill')
@@ -236,13 +238,14 @@ def GetStockData(ticker,prd,intvl):
 
         # Generate labels
         # label=get_naive_label(stock)
-        label=generate_label(stock)
+        # label=generate_label(stock)
+        label=generate_pct_label(stock)
         stock=stock.drop(columns='label',axis=1)
         return stock,label
 
+
 # Label Generation
 def generate_label(stock):
-
         # label(macd based)
         x = np.asarray(stock['macd'])
         y = np.asarray(stock['amount'] / stock['volume'])
@@ -314,15 +317,44 @@ def get_naive_label(stock):
     # stock = stock.fillna(method='ffill')
     # stock = stock.fillna(0)
     adj_price= np.asarray(stock['amount'] / stock['volume'])
-    stock['label'] = 0
+    stock['label'] = 1
     for i in range(adj_price.shape[0]-1):
             if(adj_price[i+1]>adj_price[i]):
-                stock['label'].iloc[i]=1
+                stock['label'].iloc[i]=2
             elif(adj_price[i+1]<adj_price[i]):
-                stock['label'].iloc[i]=-1
+                stock['label'].iloc[i]=0
 
     # For current last data, there is no label, always predict it as 1(assume next time is a bull)
     stock['label'].iloc[-1] = 1
     label=stock['label']
     # print(label)
     return label
+
+def generate_pct_label(stock):
+        adj_price= np.asarray(stock['amount'] / stock['volume'])
+        price_change_pct=(shift(adj_price, -1)-adj_price)/adj_price
+
+        n_median=np.median(price_change_pct[price_change_pct<0])
+        p_median=np.median(price_change_pct[price_change_pct>0])
+        # print(n_median)
+        # print(p_median)
+        stock['label'] = 1
+        for i in range(price_change_pct.shape[0] - 1):
+                if (price_change_pct[i] >= p_median):
+                        stock['label'].iloc[i] = 2
+                elif (price_change_pct[i] <= n_median):
+                        stock['label'].iloc[i] = 0
+        label = stock['label']
+
+        # _ = plt.hist(label)
+        # plt.title("Distribution of labels")
+        # plt.show()
+
+        # occurrences0 = np.count_nonzero(label == 0)
+        # occurrences1 = np.count_nonzero(label == 1)
+        # occurrences2 = np.count_nonzero(label == 2)
+        # print(occurrences0)
+        # print(occurrences1)
+        # print(occurrences2)
+
+        return label
