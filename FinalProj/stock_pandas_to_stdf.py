@@ -52,10 +52,9 @@ def data_processing(stockdf):
     stockdf['style:bullish']
     # increase
     # has been increasing repeatedly for 3 times (maybe 3 days)
-    stockdf['increase:(ma:20,close),3']
-    # If the close price has been decreasing repeatedly for 5 times (maybe 5 days)
-    stockdf['increase:close,5,-1']
-
+    # stockdf['increase:(ma:20,close),3']
+    # # If the close price has been decreasing repeatedly for 5 times (maybe 5 days)
+    # stockdf['increase:close,5,-1']
     return stockdf
 
 if __name__ == "__main__":

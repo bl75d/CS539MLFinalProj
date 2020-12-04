@@ -78,13 +78,21 @@ def train(model, train_x, train_y, directory="model_checkpoint/", num_epochs=100
     description_path = "{dir}Model_Description.log".format(dir=directory)
     statistics_path = "{dir}Log_Train_Statistics.csv".format(dir=directory)
 
-    f = open(description_path, "w")
-    f.close()
+    try:
+        f = open(description_path, "w")
+    except IOError:
+        print("File not accessible")
+    finally:
+        f.close()
 
-    f = open(description_path, "a")
-    for line in model.summary():
-        f.write("{line}\n")
-    f.close()
+    try:
+        f = open(description_path, "a")
+        for line in model.summary():
+            f.write("{line}\n")
+    except IOError:
+        print("File not accessible")
+    finally:
+        f.close()
 
     # Create a callback that saves the model's weights
     cp_callback = tf.keras.callbacks.ModelCheckpoint(
@@ -95,8 +103,8 @@ def train(model, train_x, train_y, directory="model_checkpoint/", num_epochs=100
         )
 
     save_train_info = tf.keras.callbacks.CSVLogger(
-        statistics_path, 
-        separator=",", 
+        statistics_path,
+        separator=",",
         append=False
         )
 
@@ -136,3 +144,4 @@ def predict(model, test_x):
     # make predictions for test data
     pred_y = model.predict(test_x)
     return pred_y
+

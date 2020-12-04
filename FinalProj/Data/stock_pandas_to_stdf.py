@@ -49,7 +49,7 @@ def data_processing(stockdf):
     stockdf['hhv:10,low']
     stockdf['hhv:10,close']
     # bullish/bearish
-    stockdf['style:bullish']
+    style=stockdf['style:bullish']
     # increase
     # has been increasing repeatedly for 3 times (maybe 3 days)
     stockdf['increase:(ma:20,close),3']

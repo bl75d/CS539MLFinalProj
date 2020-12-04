@@ -9,9 +9,9 @@ from scipy.signal import savgol_filter
 
 
 def get_label(stock):
-    # fulfill missing values
-    stock = stock.fillna(method='ffill')
-    stock = stock.fillna(0)
+    # # fulfill missing values
+    # stock = stock.fillna(method='ffill')
+    # stock = stock.fillna(0)
     # print(stock.isnull().sum())
 
     # label(macd based)
