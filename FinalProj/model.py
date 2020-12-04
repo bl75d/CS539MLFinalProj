@@ -1,4 +1,6 @@
 # built-in imports
+from contextlib import redirect_stdout
+import os
 
 # Data processing imports
 import numpy as np
@@ -55,6 +57,9 @@ def compile_model(model):
     model.compile(loss='categorical_crossentropy',
                   optimizer='adam', metrics=['accuracy', 'mse'])
 
+def convert_to_tensor(array):
+    return tf.convert_to_tensor(array, np.float32)
+
 def train(model, train_x, train_y, directory="model_checkpoint/", num_epochs=1000, save_period=50):
     """Train on the model with the provided training features and labels.
 
@@ -78,21 +83,12 @@ def train(model, train_x, train_y, directory="model_checkpoint/", num_epochs=100
     description_path = "{dir}Model_Description.log".format(dir=directory)
     statistics_path = "{dir}Log_Train_Statistics.csv".format(dir=directory)
 
-    try:
-        f = open(description_path, "w")
-    except IOError:
-        print("File not accessible")
-    finally:
-        f.close()
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
-    try:
-        f = open(description_path, "a")
-        for line in model.summary():
-            f.write("{line}\n")
-    except IOError:
-        print("File not accessible")
-    finally:
-        f.close()
+    with open(description_path, 'w') as f:
+        with redirect_stdout(f):
+            model.summary()
 
     # Create a callback that saves the model's weights
     cp_callback = tf.keras.callbacks.ModelCheckpoint(
