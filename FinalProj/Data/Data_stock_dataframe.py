@@ -6,7 +6,11 @@ from stock_dataframe import StockDataFrame
 from scipy.signal import find_peaks
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import MinMaxScaler
+import stock_pandas as pds
+from scipy.signal import savgol_filter
 
+# request one stock and generating its labels
 def GetStockData(ticker,prd,intvl):
         rawdata = yf.download(  # or pdr.get_data_yahoo(...
                 # tickers list or string as well
@@ -48,11 +52,12 @@ def GetStockData(ticker,prd,intvl):
         data=rawdata[['open','close','high','low','volume','amount']]
         # print(type(data))
         # data=pd.DataFrame(data)
+
         stockdf=StockDataFrame.retype(pd.DataFrame(data))
+        # for additional features in stock-pandas
+
         stock=stockdf[['open','close','high','low','volume','amount']]
         # stock['rsi_6']=stockdf['rsi_6']
-
-
 
         # Add stock technical indicators to the dataframe
         # ******************************************
@@ -102,14 +107,14 @@ def GetStockData(ticker,prd,intvl):
         stock['boll_ub']=stockdf['boll_ub']
         stock['boll_lb']=stockdf['boll_lb']
 
-        # close price less than 10.0 in 5 days count
-        stock['close_10.0_le_5_c']=stockdf['close_10.0_le_5_c']
-
-        # CR MA2 cross up CR MA1 in 20 days count
-        stock['cr-ma2_xu_cr-ma1_20_c']=stockdf['cr-ma2_xu_cr-ma1_20_c']
-
-        # count forward(future) where close price is larger than 10
-        stock['close_10.0_ge_5_fc']=stockdf['close_10.0_ge_5_fc']
+        # # close price less than 10.0 in 5 days count
+        # stock['close_10.0_le_5_c']=stockdf['close_10.0_le_5_c']
+        #
+        # # CR MA2 cross up CR MA1 in 20 days count
+        # stock['cr-ma2_xu_cr-ma1_20_c']=stockdf['cr-ma2_xu_cr-ma1_20_c']
+        #
+        # # count forward(future) where close price is larger than 10
+        # stock['close_10.0_ge_5_fc']=stockdf['close_10.0_ge_5_fc']
 
         # 6 days RSI
         stock['rsi_6']=stockdf['rsi_6']
@@ -164,6 +169,7 @@ def GetStockData(ticker,prd,intvl):
         stock['tema']=stockdf['tema']
 
         # TEMA based on the close price for a window of 2
+
         stock['close_2_tema']=stockdf['close_2_tema']
 
         # VR, default to 26 days
@@ -172,53 +178,151 @@ def GetStockData(ticker,prd,intvl):
         # MAVR is the simple moving average of VR
         stock['vr_6_sma']=stockdf['vr_6_sma']
 
+
+        # *****************************
+        # add stock-pandas.StockDataframe features
+        pdseries = pds.StockDataFrame(data)
+
+        stock['ma:2']=pdseries['ma:2']
+        stock['ma:5']=pdseries['ma:5']
+        stock['ma:2,open']=pdseries['ma:2,open']
+        stock['ma:5,open']=pdseries['ma:5,open']
+        # Exponential Moving Average
+        stock['ema:5']=pdseries['ema:5']
+
+        # Moving Average Convergence Divergence
+        stock['macd:2,3']=pdseries['macd:2,3']
+        stock['macd.s']=pdseries['macd.s']
+        stock['macd.h']=pdseries['macd.h']
+        # BOLLinger bands
+        stock['boll:2,open']=pdseries['boll:2,open']
+        # Raw Stochastic Value
+        stock['rsv:2']=pdseries['rsv:2']
+        # stochastic oscillator
+        # Relative Strength Index
+        # Bull and Bear Index
+        stock['bbi']=pdseries['bbi']
+        # Lowest of Low Values
+        stock['llv:2,low']=pdseries['llv:2,low']
+        stock['llv:2,close']=pdseries['llv:2,close']
+        stock['llv:5,low']=pdseries['llv:5,low']
+        stock['llv:5,close']=pdseries['llv:5,close']
+        stock['llv:10,low']=pdseries['llv:10,low']
+        stock['llv:10,close']=pdseries['llv:10,close']
+        # Highest of High Values
+        stock['hhv:2,low']=pdseries['hhv:2,low']
+        stock['hhv:2,close']=pdseries['hhv:2,close']
+        stock['hhv:5,low']=pdseries['hhv:5,low']
+        stock['hhv:5,close']=pdseries['hhv:5,close']
+        stock['hhv:10,low']=pdseries['hhv:10,low']
+        stock['hhv:10,close']=pdseries['hhv:10,close']
+
+        stock['style:bullish']=pdseries['style:bullish']*1
+        stock['increase:(ma:20,close),3']=pdseries['increase:(ma:20,close),3']*1
+        # stock['style:bullish']=
         # naive label
         # stock['label']=stockdf['rsi_6']//10
         # stock['label'] =stock['label'].fillna(method='ffill')
         # stock['label']=stock['label'].fillna(0)
 
+
         # fulfill missing values
         # stock['macd']=stock['macd'].fillna(method='ffill')
         # stock['macd']=stock['macd'].fillna(0)
-        stock=stock.fillna(method='ffill')
-        stock=stock.fillna(0)
+
+        stock = stock.fillna(method='bfill')
+        stock = stock.fillna(0)
         # print(stock.isnull().sum())
 
+        # Generate labels
+        # label=get_naive_label(stock)
+        label=generate_label(stock)
+        stock=stock.drop(columns='label',axis=1)
+        return stock,label
+
+# Label Generation
+def generate_label(stock):
+
         # label(macd based)
-        x=np.asarray(stock['macd'])
-        peaks,_=find_peaks(stock['macd'],height=0)
-        valleys,_=find_peaks(-stock['macd'],height=0)
-        v=[]
-        p=[]
+        x = np.asarray(stock['macd'])
+        y = np.asarray(stock['amount'] / stock['volume'])
 
-        for i in peaks:
-                if (stock["rsi_6"].iloc[i]>65):
-                     p.append(i)
+        peaks, _ = find_peaks(stock['macd'], height=0)
+        valleys, _ = find_peaks(-stock['macd'], height=0)
 
-        for i in valleys:
-                if(stock["rsi_6"].iloc[i]<35):
-                     v.append(i)
+        # # Savitzky–Golay filter
+        # # https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.savgol_filter.html
+        # xhat = savgol_filter(x, 11, 3)
+        # savgol_peaks, _ = find_peaks(xhat, height=0)
+        # savgol_valleys, _ = find_peaks(-xhat, height=0)
+
+        # RSI criteria
+        # v = []
+        # p = []
+        #
+        # for i in peaks:
+        #         if (stock["rsi_6"].iloc[i] > 65):
+        #                 p.append(i)
+        #
+        # for i in valleys:
+        #         if (stock["rsi_6"].iloc[i] < 35):
+        #                 v.append(i)
 
         # peaks=p
         # print(peaks)
         # print(x[peaks])
         # print(x[valleys])
-        plt.plot(x)
-        plt.plot(peaks,x[peaks],"x")
-        plt.plot(valleys,x[valleys],"x")
-        plt.plot(np.zeros_like(x),"--",color="gray")
 
+        # plot the MACD graph land mark the local peak/valley points
+        # plt.plot(x)
+        # plt.plot(peaks,x[peaks],"x")
+        # plt.plot(valleys,x[valleys],"x")
+        # plt.plot(np.zeros_like(x),"--",color="gray")
+        # plt.show()
+        #
+        plt.plot(y)
+        plt.plot(peaks,y[peaks],"x")
+        plt.plot(valleys,y[valleys],"x")
+        plt.plot(np.zeros_like(y),"--",color="gray")
         plt.show()
 
-        stock['label'] = 0
-        for i in peaks:
-                stock["label"].iloc[i]=1
-        for i in valleys:
-                stock["label"].iloc[i]=-1
+        # Savitzky–Golay filtered peaks and valleys
+        # plt.plot(x)
+        # plt.title("MACD")
+        # plt.plot(savgol_peaks,x[savgol_peaks],"x")
+        # plt.plot(savgol_valleys,x[savgol_valleys],"x")
+        # plt.plot(np.zeros_like(x),"--",color="gray")
+        # plt.show()
 
-        print(stock.shape)
-        label=stock['label']
-        stock.drop(columns='label')
-        print(stock.shape)
-        return stock,label
-        # print(stock.shape)
+        # plt.plot(y)
+        # plt.title("Stockprice")
+        # plt.plot(savgol_peaks, y[savgol_peaks], "x")
+        # plt.plot(savgol_valleys, y[savgol_valleys], "x")
+        # plt.plot(np.zeros_like(y), "--", color="gray")
+        # plt.show()
+
+        # 0 is "buy", 1 is "hold", 2 is "sell"
+        stock['label'] = 1
+        for i in peaks:
+                stock["label"].iloc[i] = 2
+        for i in valleys:
+                stock["label"].iloc[i] = 0
+        label = stock['label']
+        return label
+
+def get_naive_label(stock):
+    # stock = stock.fillna(method='ffill')
+    # stock = stock.fillna(0)
+    adj_price= np.asarray(stock['amount'] / stock['volume'])
+    stock['label'] = 0
+    for i in range(adj_price.shape[0]-1):
+            if(adj_price[i+1]>adj_price[i]):
+                stock['label'].iloc[i]=1
+            elif(adj_price[i+1]<adj_price[i]):
+                stock['label'].iloc[i]=-1
+
+    # For current last data, there is no label, always predict it as 1(assume next time is a bull)
+    stock['label'].iloc[-1] = 1
+    label=stock['label']
+    # print(label)
+    return label
