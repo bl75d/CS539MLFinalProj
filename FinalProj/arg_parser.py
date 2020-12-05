@@ -13,5 +13,7 @@ def add_args():
     parser.add_argument('--interval', default="1d", metavar='interval', type=str)
     parser.add_argument('-s', '--stocks', action='append', default=[], metavar='stocks', type=str)
     
+    parser.add_argument('--dir', default="model_checkpoints/", metavar='directory', type=str)
     parser.add_argument('--model', default="model_checkpoints/cp-0100.ckpt", metavar='model', type=str)
+    parser.add_argument('--epochs', default=500, metavar='epochs', type=int)
     return parser

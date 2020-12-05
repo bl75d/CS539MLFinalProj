@@ -50,8 +50,19 @@ if args.analyze:
 
     train_counter = collections.Counter(Y_train)
     test_counter = collections.Counter(Y_test)
-    print(train_counter)
-    print(test_counter)
+
+    train_percent = [(i, train_counter[i] / len(Y_train) * 100.0) for i in train_counter]
+    train_percent.sort()
+    test_percent = [(i, test_counter[i] / len(Y_test) * 100.0) for i in test_counter]
+    test_percent.sort()
+    
+    print("{}Label Distribution:{}".format(c.BLUE,c.RESET))
+    # print("Train:", train_counter)
+    print("Train Data:")
+    [print("\tLabel: {}. Percent: {:.1f}%".format(i, p)) for i,p in train_percent]
+    # print("Test:", test_counter)
+    print("Test Data:")
+    [print("\tLabel: {}. Percent: {:.1f}%".format(i, p)) for i,p in test_percent]
 
     sys.exit(0)
 
@@ -62,16 +73,38 @@ if args.train:
     print(X_train.shape)
     print(Y_train.shape)
 
-    model= mdl.create_model(model_class=LSTM_Model,train_data_shape=X_train.shape)
+    model= mdl.create_model(
+        model_class=LSTM_Model,
+        train_data_shape=X_train.shape
+        )
+
     print(model.summary())
     mdl.compile_model(model)
-    mdl.train(model, np.asarray(X_train), np.asarray(Y_train), num_epochs=500, save_period=100)
-    res=mdl.evaluate(model, np.asarray(X_test), np.asarray(Y_test))
+
+    mdl.train(
+        model, 
+        np.asarray(X_train), 
+        np.asarray(Y_train),
+        directory=args.dir, 
+        num_epochs=args.epochs, 
+        save_period=100
+        )
 
     sys.exit(0)
 
 if args.eval:
-    pass
+    X_test = load_from_npy("x_test.npy")
+    Y_test = load_from_npy("y_test.npy")
+
+    model = mdl.create_model(
+        model_class=LSTM_Model,
+        train_data_shape=X_test.shape
+        )
+
+    print(model.summary())
+    mdl.load_trained(model,args.model)
+    mdl.compile_model(model)
+    res=mdl.evaluate(model, np.asarray(X_test), np.asarray(Y_test))
 
     sys.exit(0)
 
