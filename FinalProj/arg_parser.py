@@ -3,6 +3,7 @@ import argparse
 def add_args():
     parser = argparse.ArgumentParser(description='Task')
     parser.add_argument('-p', '--prepare', action='store_true')
+    parser.add_argument('-a', '--analyze', action='store_true')
     parser.add_argument('-t', '--train', action='store_true')
     parser.add_argument('-e', '--eval', action='store_true')
 

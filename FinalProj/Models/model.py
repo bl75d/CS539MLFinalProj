@@ -94,6 +94,7 @@ def train(model, train_x, train_y, directory="model_checkpoint/", num_epochs=100
     cp_callback = tf.keras.callbacks.ModelCheckpoint(
         filepath=checkpoint_path,
         verbose=1,
+        batch_size = len(train_x),
         save_weights_only=True,
         period=save_period
         )
