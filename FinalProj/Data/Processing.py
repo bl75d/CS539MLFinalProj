@@ -45,7 +45,9 @@ def DataBrick(rawdata,rawlabel,size):
 def SplitData(stock,label,size):
     databrick, bricklabel = DataBrick(stock, label, size)
     X_train, X_test, y_train, y_test = train_test_split(
-        databrick, bricklabel, test_size=0.2, random_state=42)
+        # databrick, bricklabel, test_size=0.2, random_state=42)
+        databrick, bricklabel, test_size=0.2, shuffle=False)
+
     # print(X_train.shape, y_train.shape)
     return X_train, X_test, y_train, y_test
 
