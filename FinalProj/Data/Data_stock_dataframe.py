@@ -311,6 +311,16 @@ def generate_label(stock):
         for i in valleys:
                 stock["label"].iloc[i] = 0
         label = stock['label']
+
+
+        occurrences0 = np.count_nonzero(label == 0)
+        occurrences1 = np.count_nonzero(label == 1)
+        occurrences2 = np.count_nonzero(label == 2)
+        print(occurrences0)
+        print(occurrences1)
+        print(occurrences2)
+
+
         return label
 
 def get_naive_label(stock):
@@ -331,13 +341,15 @@ def get_naive_label(stock):
     return label
 
 def generate_pct_label(stock):
-        adj_price= np.asarray(stock['amount'] / stock['volume'])
+        # adj_price= np.asarray(stock['amount'] / stock['volume'])
+        adj_price=np.asarray(stock['close'])
+        print(adj_price)
         price_change_pct=(shift(adj_price, -1)-adj_price)/adj_price
 
         n_median=np.median(price_change_pct[price_change_pct<0])
         p_median=np.median(price_change_pct[price_change_pct>0])
-        # print(n_median)
-        # print(p_median)
+        print(n_median)
+        print(p_median)
         stock['label'] = 1
         for i in range(price_change_pct.shape[0] - 1):
                 if (price_change_pct[i] >= p_median):
@@ -350,11 +362,11 @@ def generate_pct_label(stock):
         # plt.title("Distribution of labels")
         # plt.show()
 
-        # occurrences0 = np.count_nonzero(label == 0)
-        # occurrences1 = np.count_nonzero(label == 1)
-        # occurrences2 = np.count_nonzero(label == 2)
-        # print(occurrences0)
-        # print(occurrences1)
-        # print(occurrences2)
+        occurrences0 = np.count_nonzero(label == 0)
+        occurrences1 = np.count_nonzero(label == 1)
+        occurrences2 = np.count_nonzero(label == 2)
+        print(occurrences0)
+        print(occurrences1)
+        print(occurrences2)
 
         return label

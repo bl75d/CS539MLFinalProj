@@ -18,12 +18,12 @@ def Impute(df):
     return imputed_df
 
 def Scale(df):
-    sc = MinMaxScaler(feature_range=(0, 1))
+    sc = MinMaxScaler(feature_range=(-1, 1))
     scaled_df = sc.fit_transform(df)
     return scaled_df
 
 def tsScale(ts):
-    tsc=TimeSeriesScalerMinMax(value_range=(0,1))
+    tsc=TimeSeriesScalerMinMax(value_range=(-1,1))
     scaled_ts=tsc.fit_transform(ts)
     return scaled_ts
 
