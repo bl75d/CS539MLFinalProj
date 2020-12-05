@@ -331,7 +331,9 @@ def get_naive_label(stock):
     return label
 
 def generate_pct_label(stock):
-        adj_price= np.asarray(stock['amount'] / stock['volume'])
+        # adj_price= np.asarray(stock['amount'] / stock['volume'])
+        adj_price= np.asarray(stock['close'])
+
         price_change_pct=(shift(adj_price, -1)-adj_price)/adj_price
 
         n_median=np.median(price_change_pct[price_change_pct<0])
