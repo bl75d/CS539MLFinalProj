@@ -1,5 +1,7 @@
 # Storage Files
 *.csv
+*.xlxs
+*.npy
 
 # Document Files
 *.pdf
