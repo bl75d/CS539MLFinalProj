@@ -18,6 +18,9 @@ args = parser.parse_args()
 print(args)
 
 if args.prepare:
+    if args.stocks == []:
+        args.stocks = ["AAPL"]
+        
     stockDict,labelDict = get_data(args.stocks, args.period, args.interval)
     X_train,X_test,Y_train,Y_test = process(stockDict,labelDict)
     Y_train = np.squeeze(Y_train)
@@ -47,7 +50,7 @@ if args.train:
     mdl.train(model, np.asarray(X_train), np.asarray(Y_train), num_epochs=500, save_period=100)
     res=mdl.evaluate(model, np.asarray(X_test), np.asarray(Y_test))
 
-if args.evaluate:
+if args.eval:
     pass
 
 if args.predict:
