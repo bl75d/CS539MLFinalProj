@@ -43,12 +43,15 @@ if args.train:
 
     model= mdl.create_model(model_class=LSTM_Model,train_data_shape=X_train.shape)
     print(model.summary())
-    # # modelpath="./model_checkpoint/"
-    # mdl.load_trained(model, modelpath)
     mdl.compile_model(model)
     mdl.train(model, np.asarray(X_train), np.asarray(Y_train), num_epochs=500, save_period=100)
     res=mdl.evaluate(model, np.asarray(X_test), np.asarray(Y_test))
 
+if args.evaluate:
+    pass
+
+if args.predict:
+    pass
 
 if __name__=="__main__":
     print("{}WARNING!\nPLEASE RUN THIS FILE LIKE THE FOLLOWING:\n\t{}python3 main.py --prepare\n\tpython3 main.py --train".format(c.YELLOW,c.RESET))
