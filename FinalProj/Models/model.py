@@ -54,7 +54,7 @@ def compile_model(model):
             compiled.
     """
 
-    model.compile(loss='categorical_crossentropy',
+    model.compile(loss='sparse_categorical_crossentropy',
                   optimizer='adam', metrics=['accuracy', 'mse'])
 
 def convert_to_tensor(array):

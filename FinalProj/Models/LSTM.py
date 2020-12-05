@@ -29,7 +29,10 @@ class LSTM_Model(Abstract_Model):
             tf.python.keras.models.*: Model that is generated per structure.
         """
 
-        shape = self.train_data_shape[:-1]
+        # shape = self.train_data_shape[0] =None
+        shape = (10,47)
+
+        print(shape)
 
         model = Sequential()
         model.add(LSTM(self.layer_width, input_shape=shape, return_sequences=True, go_backwards=False))
