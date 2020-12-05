@@ -14,6 +14,10 @@ def add_args():
     parser.add_argument('-s', '--stocks', action='append', default=[], metavar='stocks', type=str)
     
     parser.add_argument('--dir', default="model_checkpoints/", metavar='directory', type=str)
-    parser.add_argument('--model', default="model_checkpoints/cp-0100.ckpt", metavar='model', type=str)
+    parser.add_argument('--model', default="cp-0100.ckpt", metavar='model', type=str)
     parser.add_argument('--epochs', default=500, metavar='epochs', type=int)
+
+    parser.add_argument('--layer_width',default=15, metavar='layer_width', type=int)
+    parser.add_argument('--batch_size_divisor',default=1, metavar='batch_size_divisor', type=int)
+    parser.add_argument('--save_period',default=100, metavar='save_period', type=int)
     return parser

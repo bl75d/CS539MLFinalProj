@@ -75,7 +75,8 @@ if args.train:
 
     model= mdl.create_model(
         model_class=LSTM_Model,
-        train_data_shape=X_train.shape
+        train_data_shape=X_train.shape,
+        layerwdith=args.layer_width
         )
 
     print(model.summary())
@@ -86,8 +87,9 @@ if args.train:
         np.asarray(X_train), 
         np.asarray(Y_train),
         directory=args.dir, 
-        num_epochs=args.epochs, 
-        save_period=100
+        num_epochs=args.epochs,
+        batch_size_divisor=args.batch_size_divisor,
+        save_period=args.save_period
         )
 
     sys.exit(0)
@@ -98,11 +100,12 @@ if args.eval:
 
     model = mdl.create_model(
         model_class=LSTM_Model,
-        train_data_shape=X_test.shape
+        train_data_shape=X_test.shape,
+        layerwdith=args.layer_width
         )
 
     print(model.summary())
-    mdl.load_trained(model,args.model)
+    mdl.load_trained(model,args.dir+args.model)
     mdl.compile_model(model)
     res=mdl.evaluate(model, np.asarray(X_test), np.asarray(Y_test))
 

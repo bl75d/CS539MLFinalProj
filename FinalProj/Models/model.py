@@ -60,7 +60,7 @@ def compile_model(model):
 def convert_to_tensor(array):
     return tf.convert_to_tensor(array, np.float32)
 
-def train(model, train_x, train_y, directory="model_checkpoint/", num_epochs=1000, save_period=50):
+def train(model, train_x, train_y, directory="model_checkpoint/", num_epochs=1000, save_period=50, batch_size_divisor=1):
     """Train on the model with the provided training features and labels.
 
     Note:
@@ -74,6 +74,8 @@ def train(model, train_x, train_y, directory="model_checkpoint/", num_epochs=100
             "model_checkpoint/".
         num_epochs (int, optional): number of epochs to train for. Defaults to 1000.
         save_period (int, optional): the frequency in epochs of saving weights. Defaults to 50.
+        batch_size_divisor (int, optional): used to decide how much data to see per epoch, 2 results 
+            in half the data. Defaults to 1.
     """
 
     print("----train----")
@@ -110,7 +112,7 @@ def train(model, train_x, train_y, directory="model_checkpoint/", num_epochs=100
         train_x,
         train_y,
         epochs=num_epochs,
-        batch_size=64,
+        batch_size=train_x.shape[0]//batch_size_divisor,
         steps_per_epoch=1,
         callbacks=[cp_callback, save_train_info]
         )
@@ -124,7 +126,7 @@ def evaluate(model, test_x, test_y):
         test_y (np.array): 1d array as label vector.
     """
 
-    res = model.evaluate(test_x,  test_y, batch_size=64, verbose=1)
+    res = model.evaluate(test_x,  test_y, batch_size=1, verbose=1)
     return res
 
 def predict(model, test_x):

@@ -29,8 +29,7 @@ class LSTM_Model(Abstract_Model):
             tf.python.keras.models.*: Model that is generated per structure.
         """
 
-        # shape = self.train_data_shape[0] =None
-        shape = (10,47)
+        shape = self.train_data_shape[1:]
 
         print(shape)
 
