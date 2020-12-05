@@ -149,5 +149,7 @@ if __name__ == "__main__":
     print(stock.head())
     # print(stock.shape)
     # print(type(stock))
+
+    
     df = to_df(stock)
     print(type(df))
