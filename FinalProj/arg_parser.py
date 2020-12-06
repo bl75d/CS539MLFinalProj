@@ -6,6 +6,7 @@ def add_args():
     parser.add_argument('-a', '--analyze', action='store_true')
     parser.add_argument('-t', '--train', action='store_true')
     parser.add_argument('-e', '--eval', action='store_true')
+    parser.add_argument('-n', '--nav', action='store_true')
 
     parser.add_argument('--predict', action='store_true')
 
@@ -16,6 +17,7 @@ def add_args():
     parser.add_argument('--dir', default="model_checkpoints/", metavar='directory', type=str)
     parser.add_argument('--model', default="cp-0100.ckpt", metavar='model', type=str)
     parser.add_argument('--epochs', default=500, metavar='epochs', type=int)
+    parser.add_argument('--verbose',default=1, metavar='verbose', type=int)
 
     parser.add_argument('--layer_width',default=15, metavar='layer_width', type=int)
     parser.add_argument('--batch_size_divisor',default=1, metavar='batch_size_divisor', type=int)

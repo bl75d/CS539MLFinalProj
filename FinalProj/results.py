@@ -27,7 +27,7 @@ args = parser.parse_args()
 print(args)
 
 if args.directories == []:
-    args.directories = ["model_checkpoints"]
+    args.directories = ["model_checkpoints/"]
 
 if args.train:
     # for d in args.directories:
@@ -41,16 +41,20 @@ if args.test:
     training_args = pickle.load(open("{}/args_data.pkl".format(d), "rb"))
     training_args.train = False
     training_args.eval = True
+    training_args.verbose = 0
 
     data = []
     
     for path in map(os.path.basename, glob.glob('{}/*.index'.format(training_args.dir))):
         path = path[:-6]
-        print(path)
         
         training_args.model = path
         result = main(training_args)
         print(result)
+
         data.append(result)
+
+    print("Done with Loop!")
+    testing_accuracy(data, num_epochs=training_args.epochs)
 
 print("Done!")

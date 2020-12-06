@@ -43,7 +43,7 @@ def load_trained(model, filepath):
         filepath (str): file to load checkpoint data from (has .ckpt on the end).
     """
 
-    model.load_weights(filepath)
+    model.load_weights(filepath).expect_partial()
 
 def compile_model(model):
     """Compile the model that is loaded This can be called right after generating model, however, 
@@ -85,9 +85,6 @@ def train(model, train_x, train_y, directory="model_checkpoint/", num_epochs=100
     description_path = "{dir}/Model_Description.log".format(dir=directory)
     statistics_path = "{dir}/Log_Train_Statistics.csv".format(dir=directory)
 
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-
     with open(description_path, 'w') as f:
         with redirect_stdout(f):
             model.summary()
@@ -117,7 +114,7 @@ def train(model, train_x, train_y, directory="model_checkpoint/", num_epochs=100
         callbacks=[cp_callback, save_train_info]
         )
 
-def evaluate(model, test_x, test_y):
+def evaluate(model, test_x, test_y, verbose):
     """Evaluate the model on test data.
 
     Args:
@@ -126,7 +123,7 @@ def evaluate(model, test_x, test_y):
         test_y (np.array): 1d array as label vector.
     """
 
-    res = model.evaluate(test_x,  test_y, batch_size=1, verbose=1)
+    res = model.evaluate(test_x,  test_y, batch_size=1, verbose=verbose)
     return res
 
 def predict(model, test_x):

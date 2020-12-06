@@ -31,7 +31,7 @@ class LSTM_Model(Abstract_Model):
 
         shape = self.train_data_shape[1:]
 
-        print(shape)
+        # print(shape)
 
         model = Sequential()
         model.add(LSTM(self.layer_width, input_shape=shape, return_sequences=True, go_backwards=False))
