@@ -81,9 +81,9 @@ def train(model, train_x, train_y, directory="model_checkpoint/", num_epochs=100
     print("----train----")
 
     # Include the epoch in the file name (uses `str.format`)
-    checkpoint_path = "{dir}cp-{epoch}.ckpt".format(dir=directory, epoch="{epoch:04d}")
-    description_path = "{dir}Model_Description.log".format(dir=directory)
-    statistics_path = "{dir}Log_Train_Statistics.csv".format(dir=directory)
+    checkpoint_path = "{dir}/cp-{epoch}.ckpt".format(dir=directory, epoch="{epoch:04d}")
+    description_path = "{dir}/Model_Description.log".format(dir=directory)
+    statistics_path = "{dir}/Log_Train_Statistics.csv".format(dir=directory)
 
     if not os.path.exists(directory):
         os.makedirs(directory)

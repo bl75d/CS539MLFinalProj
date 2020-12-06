@@ -9,6 +9,7 @@ import arg_parser
 import numpy as np
 import collections
 import sys
+import pickle
 
 np.set_printoptions(suppress=True, linewidth=150, edgeitems=3, precision=3)
 print(c.RESET)
@@ -19,102 +20,107 @@ args = parser.parse_args()
 
 print(args)
 
-if args.prepare:
-    if args.stocks == []:
-        args.stocks = ["AAPL"]
+def main(args):
+    if args.prepare:
+        if args.stocks == []:
+            args.stocks = ["AAPL"]
 
-    stockDict,labelDict = get_data(args.stocks, args.period, args.interval)
-    X_train,X_test,Y_train,Y_test = process(stockDict,labelDict)
-    Y_train = np.squeeze(Y_train)
-    Y_test = np.squeeze(Y_test)
+        stockDict,labelDict = get_data(args.stocks, args.period, args.interval)
+        X_train,X_test,Y_train,Y_test = process(stockDict,labelDict,args.serieslength)
+        Y_train = np.squeeze(Y_train)
+        Y_test = np.squeeze(Y_test)
 
-    print("{}Displaying x_train data:{}".format(c.BLUE,c.RESET))
-    print(X_train)
-    print("{}Displaying x_train shape:{}".format(c.BLUE,c.RESET))
-    print(X_train.shape)
-    print("{}Displaying y_train data:{}".format(c.BLUE,c.RESET))
-    print(Y_train)
+        print("{}Displaying x_train data:{}".format(c.BLUE,c.RESET))
+        print(X_train)
+        print("{}Displaying x_train shape:{}".format(c.BLUE,c.RESET))
+        print(X_train.shape)
+        print("{}Displaying y_train data:{}".format(c.BLUE,c.RESET))
+        print(Y_train)
 
-    save_to_npy(X_train,"x_train")
-    save_to_npy(X_test,"x_test")
-    save_to_npy(Y_train,"y_train")
-    save_to_npy(Y_test,"y_test")
+        save_to_npy(X_train,"x_train")
+        save_to_npy(X_test,"x_test")
+        save_to_npy(Y_train,"y_train")
+        save_to_npy(Y_test,"y_test")
 
-    sys.exit(0)
+        sys.exit(0)
 
-if args.analyze:
-    X_train = load_from_npy("x_train.npy")
-    Y_train = load_from_npy("y_train.npy")
-    X_test = load_from_npy("x_test.npy")
-    Y_test = load_from_npy("y_test.npy")
+    if args.analyze:
+        X_train = load_from_npy("x_train.npy")
+        Y_train = load_from_npy("y_train.npy")
+        X_test = load_from_npy("x_test.npy")
+        Y_test = load_from_npy("y_test.npy")
 
-    train_counter = collections.Counter(Y_train)
-    test_counter = collections.Counter(Y_test)
+        train_counter = collections.Counter(Y_train)
+        test_counter = collections.Counter(Y_test)
 
-    train_percent = [(i, train_counter[i] / len(Y_train) * 100.0) for i in train_counter]
-    train_percent.sort()
-    test_percent = [(i, test_counter[i] / len(Y_test) * 100.0) for i in test_counter]
-    test_percent.sort()
-    
-    print("{}Label Distribution:{}".format(c.BLUE,c.RESET))
-    # print("Train:", train_counter)
-    print("Train Data:")
-    [print("\tLabel: {}. Percent: {:.1f}%".format(i, p)) for i,p in train_percent]
-    # print("Test:", test_counter)
-    print("Test Data:")
-    [print("\tLabel: {}. Percent: {:.1f}%".format(i, p)) for i,p in test_percent]
+        train_percent = [(i, train_counter[i] / len(Y_train) * 100.0) for i in train_counter]
+        train_percent.sort()
+        test_percent = [(i, test_counter[i] / len(Y_test) * 100.0) for i in test_counter]
+        test_percent.sort()
+        
+        print("{}Label Distribution:{}".format(c.BLUE,c.RESET))
+        # print("Train:", train_counter)
+        print("Train Data:")
+        [print("\tLabel: {}. Percent: {:.1f}%".format(i, p)) for i,p in train_percent]
+        # print("Test:", test_counter)
+        print("Test Data:")
+        [print("\tLabel: {}. Percent: {:.1f}%".format(i, p)) for i,p in test_percent]
 
-    sys.exit(0)
+        sys.exit(0)
 
-if args.train:
-    X_train = load_from_npy("x_train.npy")
-    Y_train = load_from_npy("y_train.npy")
+    if args.train:
+        X_train = load_from_npy("x_train.npy")
+        Y_train = load_from_npy("y_train.npy")
 
-    print(X_train.shape)
-    print(Y_train.shape)
+        print(X_train.shape)
+        print(Y_train.shape)
 
-    model= mdl.create_model(
-        model_class=LSTM_Model,
-        train_data_shape=X_train.shape,
-        layerwdith=args.layer_width
-        )
+        model= mdl.create_model(
+            model_class=LSTM_Model,
+            train_data_shape=X_train.shape,
+            layerwdith=args.layer_width
+            )
 
-    print(model.summary())
-    mdl.compile_model(model)
+        print(model.summary())
+        mdl.compile_model(model)
 
-    mdl.train(
-        model, 
-        np.asarray(X_train), 
-        np.asarray(Y_train),
-        directory=args.dir, 
-        num_epochs=args.epochs,
-        batch_size_divisor=args.batch_size_divisor,
-        save_period=args.save_period
-        )
+        pickle.dump(args, open("{}/args_data.pkl".format(args.dir), "wb"))
 
-    sys.exit(0)
+        mdl.train(
+            model, 
+            np.asarray(X_train), 
+            np.asarray(Y_train),
+            directory=args.dir, 
+            num_epochs=args.epochs,
+            batch_size_divisor=args.batch_size_divisor,
+            save_period=args.save_period
+            )
 
-if args.eval:
-    X_test = load_from_npy("x_test.npy")
-    Y_test = load_from_npy("y_test.npy")
+        sys.exit(0)
 
-    model = mdl.create_model(
-        model_class=LSTM_Model,
-        train_data_shape=X_test.shape,
-        layerwdith=args.layer_width
-        )
+    if args.eval:
+        X_test = load_from_npy("x_test.npy")
+        Y_test = load_from_npy("y_test.npy")
 
-    print(model.summary())
-    mdl.load_trained(model,args.dir+args.model)
-    mdl.compile_model(model)
-    res=mdl.evaluate(model, np.asarray(X_test), np.asarray(Y_test))
+        model = mdl.create_model(
+            model_class=LSTM_Model,
+            train_data_shape=X_test.shape,
+            layerwdith=args.layer_width
+            )
 
-    sys.exit(0)
+        print(model.summary())
+        mdl.load_trained(model,args.dir+args.model)
+        mdl.compile_model(model)
+        res=mdl.evaluate(model, np.asarray(X_test), np.asarray(Y_test))
+        return res
 
-if args.predict:
-    pass
+        sys.exit(0)
 
-    sys.exit(0)
+    if args.predict:
+        pass
+
+        sys.exit(0)
 
 if __name__=="__main__":
     print("{}WARNING!\nPLEASE RUN THIS FILE LIKE THE FOLLOWING:\n\t{}python3 main.py --prepare\n\tpython3 main.py --train".format(c.YELLOW,c.RESET))
+    main(args)

@@ -20,4 +20,5 @@ def add_args():
     parser.add_argument('--layer_width',default=15, metavar='layer_width', type=int)
     parser.add_argument('--batch_size_divisor',default=1, metavar='batch_size_divisor', type=int)
     parser.add_argument('--save_period',default=100, metavar='save_period', type=int)
+    parser.add_argument('--series_length',default=10, metavar='series_length', type=int)
     return parser
