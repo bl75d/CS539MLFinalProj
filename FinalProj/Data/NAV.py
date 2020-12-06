@@ -32,7 +32,7 @@ class Nav:
                 self.navhist.append(self.nav)
 
         # Buy
-        elif signal==0:
+        elif signal==2:
             # have 0 stock
             if self.stockquant==0:
                 self.nav = self.cash
@@ -71,7 +71,8 @@ def Generate_nav(fund,symbol,StockPriceDic,y_predict):
     if stockprice.shape[0]==y_predict.shape[0]:
         portofolio = Nav(fund)
         for i in range(stockprice.shape[0]):
-            # print(y_predict[i])
+            print(y_predict.flatten()[i])
+            print(stockprice.flatten()[i])
             portofolio.invest(symbol,y_predict.flatten()[i],stockprice.flatten()[i])
         # It is the list of NAV during the tesing period
         NetAssetValue=portofolio.navhist

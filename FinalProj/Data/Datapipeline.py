@@ -31,8 +31,8 @@ if __name__ == '__main__':
 
         # X,y=DataBrick(stock,label,size)
         # Code for running the model for each stock
-        print(X_train.shape)
-        print(y_train.shape)
+        # print(X_train.shape)
+        # print(y_train.shape)
 
 
 
@@ -83,4 +83,5 @@ if __name__ == '__main__':
         # get price list for testing set to calculate NAV
         prediction=model.predict(X_test)
         y_prediction=prediction[:,-1,:]
+        # print(y_test)
         NAV_history=Generate_nav(10000,symbol,StockPriceDic,y_prediction)
