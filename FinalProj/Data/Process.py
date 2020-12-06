@@ -79,8 +79,8 @@ def DataBrick(rawdata,rawlabel,size):
     else:
         # drop the last databrick, b/c last label is fake.
         for i in range(length-size):
-            databrick.append(rawdata[i:i+10,:])
-            bricklabel.append(rawlabel[i+10])
+            databrick.append(rawdata[i:i+size,:])
+            bricklabel.append(rawlabel[i+size])
         databrick=np.asarray(databrick)
         bricklabel=np.asarray(bricklabel).reshape(-1,1)
     return databrick,bricklabel

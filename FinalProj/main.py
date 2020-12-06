@@ -11,15 +11,6 @@ import collections
 import sys
 import pickle
 
-np.set_printoptions(suppress=True, linewidth=150, edgeitems=3, precision=3)
-print(c.RESET)
-
-# parse args
-parser = arg_parser.add_args()
-args = parser.parse_args()
-
-print(args)
-
 def main(args):
     if args.prepare:
         if args.stocks == []:
@@ -42,7 +33,7 @@ def main(args):
         save_to_npy(Y_train,"y_train")
         save_to_npy(Y_test,"y_test")
 
-        sys.exit(0)
+        return X_train,X_test,Y_train,Y_test
 
     if args.analyze:
         X_train = load_from_npy("x_train.npy")
@@ -66,7 +57,7 @@ def main(args):
         print("Test Data:")
         [print("\tLabel: {}. Percent: {:.1f}%".format(i, p)) for i,p in test_percent]
 
-        sys.exit(0)
+        return train_percent, test_percent
 
     if args.train:
         X_train = load_from_npy("x_train.npy")
@@ -96,8 +87,6 @@ def main(args):
             save_period=args.save_period
             )
 
-        sys.exit(0)
-
     if args.eval:
         X_test = load_from_npy("x_test.npy")
         Y_test = load_from_npy("y_test.npy")
@@ -114,13 +103,18 @@ def main(args):
         res=mdl.evaluate(model, np.asarray(X_test), np.asarray(Y_test))
         return res
 
-        sys.exit(0)
-
     if args.predict:
         pass
 
-        sys.exit(0)
-
 if __name__=="__main__":
+
+    # parse args
+    parser = arg_parser.add_args()
+    args = parser.parse_args()
     print("{}WARNING!\nPLEASE RUN THIS FILE LIKE THE FOLLOWING:\n\t{}python3 main.py --prepare\n\tpython3 main.py --train".format(c.YELLOW,c.RESET))
+   
+    np.set_printoptions(suppress=True, linewidth=150, edgeitems=3, precision=3)
+    print(c.RESET)
+
+    print(args)
     main(args)

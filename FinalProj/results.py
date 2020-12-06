@@ -1,11 +1,6 @@
-from Data.Collect import *
-from Data.Process import *
-from Data.File_IO import *
-import Models.model as mdl
-from Models.LSTM import *
-
 from Results.Generate_Accuracy_Plots import *
 from util import Color as c
+from main import main
 
 import numpy as np
 import pandas as pd
@@ -13,6 +8,7 @@ import collections
 import sys
 import glob
 import argparse
+import os
 
 def add_args():
     parser = argparse.ArgumentParser(description='Task')
@@ -28,6 +24,7 @@ print(c.RESET)
 # parse args
 parser = add_args()
 args = parser.parse_args()
+print(args)
 
 if args.directories == []:
     args.directories = ["model_checkpoints"]
@@ -37,12 +34,23 @@ if args.train:
     d = args.directories[0]
     training_accuracy("{}/Log_Train_Statistics.csv".format(d))
 
-    sys.exit(0)
     
 if args.test:
     # for d in args.directories:
     d = args.directories[0]
-    training_args = pickle.load(open("{}/training_args.pkl".format(d), "rb"))
+    training_args = pickle.load(open("{}/args_data.pkl".format(d), "rb"))
+    training_args.train = False
+    training_args.eval = True
 
+    data = []
+    
+    for path in map(os.path.basename, glob.glob('{}/*.index'.format(training_args.dir))):
+        path = path[:-6]
+        print(path)
+        
+        training_args.model = path
+        result = main(training_args)
+        print(result)
+        data.append(result)
 
-    sys.exit(0)
+print("Done!")

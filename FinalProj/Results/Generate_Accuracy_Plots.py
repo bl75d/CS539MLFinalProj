@@ -21,24 +21,29 @@ def training_accuracy(csv):
     acc = np.insert(acc, 0, 0)
     loss = np.insert(loss, 0, np.inf)
     mse = np.insert(mse, 0, np.inf)
+    
+    linewidth = 5
+    legend_font = 22
+    label_font = 22
+    title_font = 24
 
     # print(data)
     fig = plt.figure(figsize=(15,10))
     fig.tight_layout(pad=0.0)
     plt.hlines(1, 0, len(data), linewidth=5)
-    plt.plot(acc, linewidth=7, color="blue", label="Accuracy")
-    plt.plot(loss, linewidth=7, color="red", label="Loss")
-    plt.plot(mse, linewidth=7, color="green", label="MSE")
+    plt.plot(acc, linewidth=linewidth, color="blue", label="Accuracy")
+    plt.plot(loss, linewidth=linewidth, color="red", label="Loss")
+    plt.plot(mse, linewidth=linewidth, color="green", label="MSE")
     plt.vlines(0, 0, 1, linewidth=5)
     plt.hlines(0, 0, len(data), linewidth=5)
     plt.grid(linewidth=3)
-    plt.legend(fontsize=26)
-    plt.tick_params(axis='both', labelsize=24)
+    plt.legend(fontsize=legend_font)
+    plt.tick_params(axis='both', labelsize=label_font)
     plt.yticks(np.arange(0,1.2,.1))
-    plt.xlabel('Num Epochs', size=24)
-    plt.ylabel('Accuracy, Loss, Error', size=24)
-    plt.title('Training - Results verus Epochs', size=28)
-    plt.savefig("Loss.png", bbox_inches='tight',pad_inches = 0)
+    plt.xlabel('Num Epochs', size=label_font)
+    plt.ylabel('Accuracy, Loss, Error', size=label_font)
+    plt.title('Training - Results verus Epochs', size=title_font)
+    plt.savefig("Loss.png", bbox_inches='tight',pad_inches = .10)
 
 
     # with open('monte_carlo_final.pkl', 'rb') as f:
