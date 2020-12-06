@@ -31,8 +31,8 @@ if __name__ == '__main__':
 
         # X,y=DataBrick(stock,label,size)
         # Code for running the model for each stock
-        # print(X_train.shape)
-        # print(y_train.shape)
+        print(X_train.shape)
+        print(y_train.shape)
 
 
 
@@ -49,7 +49,7 @@ if __name__ == '__main__':
         model.add(Dense(units=1,activation='softmax'))
         model.compile(optimizer='adam', loss='mean_squared_error',metrics=['accuracy'])
 
-        history = model.fit(X_train, y_train, epochs=300, batch_size=32)
+        history = model.fit(X_train, y_train, epochs=10, batch_size=32)
         print(model.summary())
 
         results=model.evaluate(X_test,y_test,batch_size=32)
@@ -61,9 +61,11 @@ if __name__ == '__main__':
         plt.xlabel('epoch')
         plt.legend(['train', 'test'], loc='upper left')
         plt.show()
-        prediction=model.predict(X_test)
-        print(prediction)
-        print(y_test)
+
+
+        # print(y_prediction.shape)
+        # print(y_test.shape)
+        # print(y_test)
 
         # history = model.fit(X, y, validation_split=0.1,shuffle=False,epochs=300, batch_size=32)
         # print(model.summary())
@@ -79,4 +81,6 @@ if __name__ == '__main__':
         # print(y_test)
 
         # get price list for testing set to calculate NAV
-        NAV_history=Generate_nav(10000,StockPriceDic,symbol,prediction)
+        prediction=model.predict(X_test)
+        y_prediction=prediction[:,-1,:]
+        NAV_history=Generate_nav(10000,symbol,StockPriceDic,y_prediction)

@@ -63,23 +63,24 @@ class Nav:
 #         print(portofolio.nav)
 
 # use stock['close'] as the stock price; y_predict is the prediction for X_test, it is the signal for trading
-def Generate_nav(fund,StockPriceDic,symbol,y_predict):
+def Generate_nav(fund,symbol,StockPriceDic,y_predict):
     price = StockPriceDic[symbol]
     teststart=price.shape[0]-y_predict.shape[0]
     stockprice = price[teststart:price.shape[0]]
-    if stockprice.shape==y_predict.shape:
+    print(y_predict.shape)
+    if stockprice.shape[0]==y_predict.shape[0]:
         portofolio = Nav(fund)
         for i in range(stockprice.shape[0]):
-            portofolio.invest(symbol,y_predict[i],stockprice[i])
-
-        print(portofolio.navhist)
-        plt.plot(portofolio.nav)
+            # print(y_predict[i])
+            portofolio.invest(symbol,y_predict.flatten()[i],stockprice.flatten()[i])
+        # It is the list of NAV during the tesing period
+        NetAssetValue=portofolio.navhist
+        plt.plot(NetAssetValue)
         plt.title('Net Asset Value')
         plt.ylabel('Dollar')
         plt.xlabel('Day')
         plt.legend(['Value'], loc='upper left')
         plt.show()
         return portofolio.navhist
-
     else:
         print("Prediction length error! Check generate_nav()")
