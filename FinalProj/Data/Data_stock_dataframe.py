@@ -184,43 +184,42 @@ def GetStockData(ticker,prd,intvl):
         # *****************************
         # add stock-pandas.StockDataframe features
         pdseries = pds.StockDataFrame(data)
-
-        stock['ma:2']=pdseries['ma:2']
-        stock['ma:5']=pdseries['ma:5']
-        stock['ma:2,open']=pdseries['ma:2,open']
-        stock['ma:5,open']=pdseries['ma:5,open']
-        # Exponential Moving Average
-        stock['ema:5']=pdseries['ema:5']
-
-        # Moving Average Convergence Divergence
-        stock['macd:2,3']=pdseries['macd:2,3']
-        stock['macd.s']=pdseries['macd.s']
-        stock['macd.h']=pdseries['macd.h']
-        # BOLLinger bands
-        stock['boll:2,open']=pdseries['boll:2,open']
-        # Raw Stochastic Value
-        stock['rsv:2']=pdseries['rsv:2']
-        # stochastic oscillator
-        # Relative Strength Index
-        # Bull and Bear Index
-        stock['bbi']=pdseries['bbi']
-        # Lowest of Low Values
-        stock['llv:2,low']=pdseries['llv:2,low']
-        stock['llv:2,close']=pdseries['llv:2,close']
-        stock['llv:5,low']=pdseries['llv:5,low']
-        stock['llv:5,close']=pdseries['llv:5,close']
-        stock['llv:10,low']=pdseries['llv:10,low']
-        stock['llv:10,close']=pdseries['llv:10,close']
-        # Highest of High Values
-        stock['hhv:2,low']=pdseries['hhv:2,low']
-        stock['hhv:2,close']=pdseries['hhv:2,close']
-        stock['hhv:5,low']=pdseries['hhv:5,low']
-        stock['hhv:5,close']=pdseries['hhv:5,close']
-        stock['hhv:10,low']=pdseries['hhv:10,low']
-        stock['hhv:10,close']=pdseries['hhv:10,close']
+        # stock['ma:2']=pdseries['ma:2']
+        # stock['ma:5']=pdseries['ma:5']
+        # stock['ma:2,open']=pdseries['ma:2,open']
+        # stock['ma:5,open']=pdseries['ma:5,open']
+        # # Exponential Moving Average
+        # stock['ema:5']=pdseries['ema:5']
+        #
+        # # Moving Average Convergence Divergence
+        # stock['macd:2,3']=pdseries['macd:2,3']
+        # stock['macd.s']=pdseries['macd.s']
+        # stock['macd.h']=pdseries['macd.h']
+        # # BOLLinger bands
+        # stock['boll:2,open']=pdseries['boll:2,open']
+        # # Raw Stochastic Value
+        # stock['rsv:2']=pdseries['rsv:2']
+        # # stochastic oscillator
+        # # Relative Strength Index
+        # # Bull and Bear Index
+        # stock['bbi']=pdseries['bbi']
+        # # Lowest of Low Values
+        # stock['llv:2,low']=pdseries['llv:2,low']
+        # stock['llv:2,close']=pdseries['llv:2,close']
+        # stock['llv:5,low']=pdseries['llv:5,low']
+        # stock['llv:5,close']=pdseries['llv:5,close']
+        # stock['llv:10,low']=pdseries['llv:10,low']
+        # stock['llv:10,close']=pdseries['llv:10,close']
+        # # Highest of High Values
+        # stock['hhv:2,low']=pdseries['hhv:2,low']
+        # stock['hhv:2,close']=pdseries['hhv:2,close']
+        # stock['hhv:5,low']=pdseries['hhv:5,low']
+        # stock['hhv:5,close']=pdseries['hhv:5,close']
+        # stock['hhv:10,low']=pdseries['hhv:10,low']
+        # stock['hhv:10,close']=pdseries['hhv:10,close']
 
         stock['style:bullish']=pdseries['style:bullish']*1
-        stock['increase:(ma:20,close),3']=pdseries['increase:(ma:20,close),3']*1
+        # stock['increase:(ma:20,close),3']=pdseries['increase:(ma:20,close),3']*1
 
         # naive label
         # stock['label']=stockdf['rsi_6']//10
@@ -248,7 +247,8 @@ def GetStockData(ticker,prd,intvl):
 def generate_label(stock):
         # label(macd based)
         x = np.asarray(stock['macd'])
-        y = np.asarray(stock['amount'] / stock['volume'])
+        # y = np.asarray(stock['amount'] / stock['volume'])
+        y=np.asarray(stock['close'])
 
         peaks, _ = find_peaks(stock['macd'], height=0)
         valleys, _ = find_peaks(-stock['macd'], height=0)
@@ -326,7 +326,9 @@ def generate_label(stock):
 def get_naive_label(stock):
     # stock = stock.fillna(method='ffill')
     # stock = stock.fillna(0)
-    adj_price= np.asarray(stock['amount'] / stock['volume'])
+    # adj_price= np.asarray(stock['amount'] / stock['volume'])
+    adj_price = np.asarray(stock['close'])
+
     stock['label'] = 1
     for i in range(adj_price.shape[0]-1):
             if(adj_price[i+1]>adj_price[i]):
@@ -343,11 +345,12 @@ def get_naive_label(stock):
 def generate_pct_label(stock):
         # adj_price= np.asarray(stock['amount'] / stock['volume'])
         adj_price=np.asarray(stock['close'])
-        print(adj_price)
+        # print(adj_price)
         price_change_pct=(shift(adj_price, -1)-adj_price)/adj_price
-
-        n_median=np.median(price_change_pct[price_change_pct<0])
-        p_median=np.median(price_change_pct[price_change_pct>0])
+        n_median=np.quantile(price_change_pct[price_change_pct<0],0.25)
+        p_median=np.quantile(price_change_pct[price_change_pct>0],0.25)
+        # n_median=np.median(price_change_pct[price_change_pct<0])
+        # p_median=np.median(price_change_pct[price_change_pct>0])
         print(n_median)
         print(p_median)
         stock['label'] = 1
@@ -362,11 +365,11 @@ def generate_pct_label(stock):
         # plt.title("Distribution of labels")
         # plt.show()
 
-        occurrences0 = np.count_nonzero(label == 0)
-        occurrences1 = np.count_nonzero(label == 1)
-        occurrences2 = np.count_nonzero(label == 2)
-        print(occurrences0)
-        print(occurrences1)
-        print(occurrences2)
+        # occurrences0 = np.count_nonzero(label == 0)
+        # occurrences1 = np.count_nonzero(label == 1)
+        # occurrences2 = np.count_nonzero(label == 2)
+        # print(occurrences0)
+        # print(occurrences1)
+        # print(occurrences2)
 
         return label

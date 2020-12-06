@@ -27,6 +27,7 @@ def tsScale(ts):
     scaled_ts=tsc.fit_transform(ts)
     return scaled_ts
 
+# create databrick and not split it
 def DataBrick(rawdata,rawlabel,size):
     length=rawdata.shape[0]
     databrick=[]
@@ -36,8 +37,8 @@ def DataBrick(rawdata,rawlabel,size):
     else:
         # drop the last databrick, b/c last label is fake.
         for i in range(length-size):
-            databrick.append(rawdata[i:i+10,:])
-            bricklabel.append(rawlabel[i+10])
+            databrick.append(rawdata[i:i+size,:])
+            bricklabel.append(rawlabel[i+size])
         databrick=np.asarray(databrick)
         bricklabel=np.asarray(bricklabel).reshape(-1,1)
     return databrick,bricklabel
@@ -46,7 +47,7 @@ def SplitData(stock,label,size):
     databrick, bricklabel = DataBrick(stock, label, size)
     X_train, X_test, y_train, y_test = train_test_split(
         # databrick, bricklabel, test_size=0.2, random_state=42)
-        databrick, bricklabel, test_size=0.2, shuffle=False)
+        databrick, bricklabel, test_size=0.1, shuffle=False)
 
     # print(X_train.shape, y_train.shape)
     return X_train, X_test, y_train, y_test
