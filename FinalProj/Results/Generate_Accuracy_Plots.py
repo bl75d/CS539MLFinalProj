@@ -51,6 +51,8 @@ def testing_accuracy(data, num_epochs=500):
         fig.tight_layout(pad=0.0)
         fig.canvas.draw()
 
+    data = [el[1] for el in data]
+
     data = np.array(data[:], dtype=float)
 
     loss = data[:,0]

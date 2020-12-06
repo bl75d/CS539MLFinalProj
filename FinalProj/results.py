@@ -48,13 +48,17 @@ if args.test:
     for path in map(os.path.basename, glob.glob('{}/*.index'.format(training_args.dir))):
         path = path[:-6]
         
+        num = int(path[3:-5])
         training_args.model = path
         result = main(training_args)
         print(result)
 
-        data.append(result)
+        data.append((num,result))
+
 
     print("Done with Loop!")
+    data.sort()
+    
     testing_accuracy(data, num_epochs=training_args.epochs)
 
 print("Done!")
