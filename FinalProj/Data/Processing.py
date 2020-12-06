@@ -59,6 +59,7 @@ def DataPipeline(symbol_list,period,interval):
         # return raw data--stock and label
         stockdf,labeldf = GetStockData(symbol, period, interval)
         stock = np.asarray(stockdf)
+        print(stock.shape)
         # print(stock)
         label=np.asarray(labeldf)
 
@@ -74,3 +75,17 @@ def DataPipeline(symbol_list,period,interval):
         StockDict[symbol] = stock
         LabelDict[symbol] = label
     return StockDict,LabelDict
+
+#get close price for NAV calculation
+def GetclosePrice(symbol_list,period,interval,size):
+    StockPriceDict={}
+    for symbol in symbol_list:
+        # return raw data--stock and label
+        stockdf,labeldf = GetStockData(symbol, period, interval)
+        price=np.asarray(stockdf['close'])
+        # price=closeprice[]
+        # Trim the price list to fit LSTM output dimension
+        price=price[size-1:-1]
+        StockPriceDict[symbol]=np.asarray(price).reshape(-1,1)
+
+    return StockPriceDict

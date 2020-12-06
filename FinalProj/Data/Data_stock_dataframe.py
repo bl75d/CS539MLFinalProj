@@ -304,23 +304,21 @@ def generate_label(stock):
         # plt.plot(np.zeros_like(y), "--", color="gray")
         # plt.show()
 
-        # 0 is "buy", 1 is "hold", 2 is "sell"
+        # 0 is "sell", 1 is "hold", 2 is "buy"
         stock['label'] = 1
         for i in peaks:
-                stock["label"].iloc[i] = 2
-        for i in valleys:
                 stock["label"].iloc[i] = 0
+        for i in valleys:
+                stock["label"].iloc[i] = 2
         label = stock['label']
 
 
-        occurrences0 = np.count_nonzero(label == 0)
-        occurrences1 = np.count_nonzero(label == 1)
-        occurrences2 = np.count_nonzero(label == 2)
-        print(occurrences0)
-        print(occurrences1)
-        print(occurrences2)
-
-
+        # occurrences0 = np.count_nonzero(label == 0)
+        # occurrences1 = np.count_nonzero(label == 1)
+        # occurrences2 = np.count_nonzero(label == 2)
+        # print(occurrences0)
+        # print(occurrences1)
+        # print(occurrences2)
         return label
 
 def get_naive_label(stock):
@@ -348,7 +346,7 @@ def generate_pct_label(stock):
         # print(adj_price)
         price_change_pct=(shift(adj_price, -1)-adj_price)/adj_price
         n_median=np.quantile(price_change_pct[price_change_pct<0],0.25)
-        p_median=np.quantile(price_change_pct[price_change_pct>0],0.25)
+        p_median=np.quantile(price_change_pct[price_change_pct>0],0.75)
         # n_median=np.median(price_change_pct[price_change_pct<0])
         # p_median=np.median(price_change_pct[price_change_pct>0])
         print(n_median)
@@ -365,11 +363,11 @@ def generate_pct_label(stock):
         # plt.title("Distribution of labels")
         # plt.show()
 
-        # occurrences0 = np.count_nonzero(label == 0)
-        # occurrences1 = np.count_nonzero(label == 1)
-        # occurrences2 = np.count_nonzero(label == 2)
-        # print(occurrences0)
-        # print(occurrences1)
-        # print(occurrences2)
+        occurrences0 = np.count_nonzero(label == 0)
+        occurrences1 = np.count_nonzero(label == 1)
+        occurrences2 = np.count_nonzero(label == 2)
+        print(occurrences0)
+        print(occurrences1)
+        print(occurrences2)
 
         return label
