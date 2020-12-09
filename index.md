@@ -55,8 +55,33 @@ In this test, even though we still picked out 75 percent days as the training da
 For Kneighbors, we are using k = 3, since we only have three labels. For the SVM, we are using C = 0.5, in order to make the model more balanced. For the Decision Tree, Random Forest, and MLCP, we gave them a very large max depth and max iteration to make sure that they can find the best result. And we give max_features = 47 to Random Forest since we only have that much.
 
 ### LSTM
-
-Stuff
+The Long Short-Term Memory model below has a layer width of 60 and two separate dropouts. Note that there is a total of 3,513 trainable parameters for the model.
+```
+Model: "sequential"
+____________________________________________________________
+Layer (type)        Output Shape                 Param #
+____________________________________________________________
+lstm (LSTM)         (None, 10, 15)               2340
+____________________________________________________________
+time_distributed    (TimeDistri (None, 10, 15)   240
+____________________________________________________________
+time_distributed_1  (TimeDist (None, 10, 15)     240
+____________________________________________________________
+dropout (Dropout)   (None, 10, 15)               0
+____________________________________________________________
+time_distributed_2  (TimeDist (None, 10, 15)     240
+____________________________________________________________
+flatten (Flatten)   (None, 150)                  0
+____________________________________________________________
+dropout_1 (Dropout) (None, 150)                  0
+____________________________________________________________
+dense_3 (Dense)     (None, 3)                    453
+____________________________________________________________
+Total params: 3,513
+Trainable params: 3,513
+Non-trainable params: 0
+____________________________________________________________________
+```
 
 ### CNN
 ![image](https://github.com/bl75d/CS539MLFinalProj/blob/master/FinalProj/Jeff/CNN_parameter.png)
