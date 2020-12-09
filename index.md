@@ -7,20 +7,20 @@ The trading process has evolved massively, investors and traders have to employ 
 
 Machine learning has the potential to ease the whole process by analyzing large chunks of data, spotting significant patterns and generating a single output that navigates traders towards a particular decision based on predicted asset prices. With the help of machine learning, traders can analyze data points that are present very fastly and accurately, and learn trends and form patterns at higher speed, which are generally used for smart trading.
 
-## Tools & Methodology
-### Tools
+# Tools & Methodology
+## Tools
 Python is an efficient way to quickly code up models that is widely supported with different capabilities. Numpy is great for mathematical operations and since most of this project will require large tables of data to have numeric computations. Pandas is useful for data analysis while deciding and analyzing feature importance and feature engineering. Tensorflow is a machine learning framework for developing models that can be trained and tested with an easy to use API while still allowing the user to deeply modify.
 
-### Existing Method 
+## Existing Method 
 here have been many learning models trying to predict the stock market, thus making money from it. However, many of them either focus too much on the price while the price itself is affected by too many factors that would result in overfitting or lack of accuracy, or disregard the buy and sale procedure that makes the model useless (Dongdong, etc). In our case, we will
 combine the stock purchasing simulation, building a classifier that can feed back the best decisions (sell, buy, keep). Also, the starting stock or starting asset will be given, and then we will keep tracking it’s value so that we can get a better evaluation for the model. There have been previous works that used several models and tried to get the best one. We will do this as well. However, we would focus more on the LSTM.
-### Unique Challenge
+## Unique Challenge
 The difference between our model and those most common models in the world is that our output is directly the choice or operations we are going to do with our asset. As a result, we can more easily evaluate the efficiency or the performance of the model. Compared to those models, our models can give more visual results, people can directly see how their assets will change, thus can be more persuasive.
 
-
+# Stocks Picked
 ## Stock Trends of 11 Picked Stocks
 The picked eleven stocks are: "AAPL","TSLA","AMZN","GOOG","FB","NIO","BYND","FSLY","MRNA","BABA","BLNK".
-### Relative stable Stocks
+## Relative stable Stocks
 "AAPL", "TSLA", "AMZN", "GOOG", and "FB" have relative stable stock price trends. They are big Internet companies and their stock price keeps rise most of the time.
 ### Flat and Increase Stocks
 "NIO", "MRNA" and "BLNK" has a very stable trend in the beginning, however, their price increased dramatically in the latter days.
@@ -31,9 +31,10 @@ The picked eleven stocks are: "AAPL","TSLA","AMZN","GOOG","FB","NIO","BYND","FSL
 ## Data
 
 ### Collection
-Stuff
+To accomplish the task, we will first perform data mining with the Finnhub API. The API allows for straightforward collection of historical stock data at different time intervals. For example, we could collect minute, hourly, daily stock data based on the timeframe we wish to use. This will likely affect the model’s responsiveness to slight market variations and can be a component that we test to compare results. From this data, we can perform various other feature extraction techniques. One such feature is a Simple Moving Average (SMA), a metric used by traders on Wall Street. To add this feature, we select a window size (n) as a parameter and average the stock price over the last n quotes. This methodology can be applied to a variety of indicators detailed further below.
 ### Feature Engineering
-Stuff
+
+
 ### Labeling
 Stuff
 ## Models
