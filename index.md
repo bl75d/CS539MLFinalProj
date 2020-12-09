@@ -5,7 +5,9 @@ General Purpose
 
 # Background
 
-Some generic background of the project
+The trading process has evolved massively, investors and traders have to employ sophisticated parameters and combinations of factors to make decisions on a volatile market. Social sentiment scores, technical indicators and fundamental information, considering and analyzing those factors makes investing today more complicated than ever. 
+
+Machine learning has the potential to ease the whole process by analyzing large chunks of data, spotting significant patterns and generating a single output that navigates traders towards a particular decision based on predicted asset prices. With the help of machine learning, traders can analyze data points that are present very fastly and accurately, and learn trends and form patterns at higher speed, which are generally used for smart trading.
 
 ## Stock Indicators
 Stocks go up and down
