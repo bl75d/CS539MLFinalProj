@@ -44,10 +44,24 @@ In this test, even though we still picked out 75 percent days as the training da
 For Kneighbors, we are using k = 3, since we only have three labels. For the SVM, we are using C = 0.5, in order to make the model more balanced. For the Decision Tree, Random Forest, and MLCP, we gave them a very large max depth and max iteration to make sure that they can find the best result. And we give max_features = 47 to Random Forest since we only have that much.
 
 ### LSTM
-Stuff
-### CNN
+
 Stuff
 
+### CNN
+![image](https://github.com/bl75d/CS539MLFinalProj/blob/master/FinalProj/Jeff/CNN_parameter.png)
+
+We have built a CNN model for predict 1 day's stock price based on its previous 1 year's stock price.
+
+Stock price data was reshaped as images in shape of 12*21, which represented stock price for a whole year with 12 months and 21 transaction days each month.
+
+Apple company's stock price data in 40 years was resampled into 6879 (instances) by moving all pixels forward at step of 1.
+
+![image](https://github.com/bl75d/CS539MLFinalProj/blob/master/FinalProj/Jeff/CNN_NAV.png)
+
+We have attained an accuracy of 39.2%. 
+
+However, in NAV transaction simulation, 
+we have made 90% profits at the 90th day and 50% at the end of 100 days.
 
 # Results
 
