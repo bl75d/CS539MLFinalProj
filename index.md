@@ -86,12 +86,11 @@ In this part of testing results, we only picked the most significant stock "BABA
 # Discussion
 
 ## What can we learn from simple classifications
-
 ### The Time continuty
-
+The time continuety doesn't effect most of the models that much. As a matter of fact, all the mathmatical models are tend to label all the data as hold, so that the accuracy could be better. While for other models, it can even have some nagetive effect. The ones that was effected the most is Naive Bayes, after we use random split, the rsults of it became much better. In addition, AdaBoost has a very balanced and stable performance. No matter whether using random split or not.
 ### The NAV performance
-
-What model did better and all
+From the tables and the NAV figures, we can clear tell that the accuracy of the model, or the score of the mdoel does not have anything to do with NAV. The NAV is about making right decision at a right time. It seems that the models using random split data have a better performance, and since the data are shuffled, they can perfectly solve those flat first, unstable later trend models.
+## CNN and LSTM
 
 # Conclusion
 We did something
