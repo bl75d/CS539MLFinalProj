@@ -39,7 +39,7 @@ There are two different split settings, thus two different tests.
 ##### Continuous Splite
 In this test, we took the first 75 percent of the data as training sets without shuffling it. In this case, when the models are trained, there is still some time continuity inside the training dataset. This split has a problem, when the training period stock trend varies a lot with the testing days, the model can be very inaccurate.
 ##### Shuffled Splite
-In this test, even though we still picked out 75 percent days as the training dataset, but the data was shuffled before taking into use. Thus, the time continues day with each day would be broken.
+In this test, even though we still picked out 75 percent days as the training dataset, but the data was shuffled before taking into use. Thus, the time continues day with each day would be broken. However, to calculate the NAV, we are still going to use the continuous split testing datas. Or the NAV won't make any sense.
 #### Parameter settings
 For Kneighbors, we are using k = 3, since we only have three labels. For the SVM, we are using C = 0.5, in order to make the model more balanced. For the Decision Tree, Random Forest, and MLCP, we gave them a very large max depth and max iteration to make sure that they can find the best result. And we give max_features = 47 to Random Forest since we only have that much.
 
