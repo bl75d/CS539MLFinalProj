@@ -109,7 +109,7 @@ Total params: 57,923
 Trainable params: 57,923
 Non-trainable params: 0
 ___________________________________________________________________
-
+```
 We have built a CNN model for predict 1 day's stock price based on its previous 1 year's stock price.
 
 Stock price data was reshaped as images in shape of 12*21, which represented stock price of a whole year with 12 months and 21 transaction days each month.
