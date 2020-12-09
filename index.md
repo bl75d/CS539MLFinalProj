@@ -61,36 +61,54 @@ In this test, even though we still picked out 75 percent days as the training da
 For Kneighbors, we are using k = 3, since we only have three labels. For the SVM, we are using C = 0.5, in order to make the model more balanced. For the Decision Tree, Random Forest, and MLCP, we gave them a very large max depth and max iteration to make sure that they can find the best result. And we give max_features = 47 to Random Forest since we only have that much.
 
 ### LSTM
+
 The Long Short-Term Memory model below has a layer width of 60 and two separate dropouts. Note that there is a total of 3,513 trainable parameters for the model.
 ```
 Model: "sequential"
-____________________________________________________________
-Layer (type)        Output Shape                 Param #
-____________________________________________________________
-lstm (LSTM)         (None, 10, 15)               2340
-____________________________________________________________
-time_distributed    (TimeDistri (None, 10, 15)   240
-____________________________________________________________
-time_distributed_1  (TimeDist (None, 10, 15)     240
-____________________________________________________________
-dropout (Dropout)   (None, 10, 15)               0
-____________________________________________________________
-time_distributed_2  (TimeDist (None, 10, 15)     240
-____________________________________________________________
-flatten (Flatten)   (None, 150)                  0
-____________________________________________________________
-dropout_1 (Dropout) (None, 150)                  0
-____________________________________________________________
-dense_3 (Dense)     (None, 3)                    453
-____________________________________________________________
+___________________________________________________________________
+Layer (type)               Output Shape                 Param #
+___________________________________________________________________
+lstm (LSTM)                (None, 10, 15)               2340
+___________________________________________________________________
+time_distributed           (TimeDistri (None, 10, 15)   240
+___________________________________________________________________
+time_distributed_1         (TimeDist (None, 10, 15)     240
+___________________________________________________________________
+dropout (Dropout)          (None, 10, 15)               0
+___________________________________________________________________
+time_distributed_2         (TimeDist (None, 10, 15)     240
+___________________________________________________________________
+flatten (Flatten)          (None, 150)                  0
+___________________________________________________________________
+dropout_1 (Dropout)        (None, 150)                  0
+___________________________________________________________________
+dense_3 (Dense)            (None, 3)                    453
+___________________________________________________________________
 Total params: 3,513
 Trainable params: 3,513
 Non-trainable params: 0
-____________________________________________________________________
+___________________________________________________________________
 ```
-
 ### CNN
-![image](https://github.com/bl75d/CS539MLFinalProj/blob/master/FinalProj/Jeff/CNN_parameter.png)
+```
+Model: "sequential"
+___________________________________________________________________
+Layer (type)               Output Shape                 Param #
+___________________________________________________________________
+conv2d (Conv2D)            (None, 12, 21, 32)           320
+___________________________________________________________________
+max_pooling2d (MaxConv2D)  (None, 4, 7, 32)             0
+___________________________________________________________________
+flatten (Flatten)          (None, 896)                  0
+___________________________________________________________________
+dense (Dense)              (None, 64)                   57408
+___________________________________________________________________
+dense_1 (Dense)            (None, 3)                    195
+___________________________________________________________________
+Total params: 57,923
+Trainable params: 57,923
+Non-trainable params: 0
+___________________________________________________________________
 
 We have built a CNN model for predict 1 day's stock price based on its previous 1 year's stock price.
 
