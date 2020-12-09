@@ -26,9 +26,11 @@ The picked eleven stocks are: "AAPL","TSLA","AMZN","GOOG","FB","NIO","BYND","FSL
 "NIO", "MRNA" and "BLNK" has a very stable trend in the beginning, however, their price increased dramatically in the latter days.
 ### Relative Unstable Stocks
 "BYND", "FSLY" and "BABA" have a relatively unstable trend. Their price keeps going up and down and it would be really hard to correctly calculate them.
+
+
 # Methods
 
-## Data
+## Data Prepocessing
 
 ### Collection
 To accomplish the task, we will first perform data mining with the Finnhub API. The API allows for straightforward collection of historical stock data at different time intervals. For example, we could collect minute, hourly, daily stock data based on the timeframe we wish to use. This will likely affect the model’s responsiveness to slight market variations and can be a component that we test to compare results. From this data, we can perform various other feature extraction techniques. One such feature is a Simple Moving Average (SMA), a metric used by traders on Wall Street. To add this feature, we select a window size (n) as a parameter and average the stock price over the last n quotes. This methodology can be applied to a variety of indicators detailed further below.
@@ -53,33 +55,9 @@ In this test, even though we still picked out 75 percent days as the training da
 For Kneighbors, we are using k = 3, since we only have three labels. For the SVM, we are using C = 0.5, in order to make the model more balanced. For the Decision Tree, Random Forest, and MLCP, we gave them a very large max depth and max iteration to make sure that they can find the best result. And we give max_features = 47 to Random Forest since we only have that much.
 
 ### LSTM
-The Long Short-Term Memory model below has a layer width of 60 and two separate dropouts. Note that there is a total of 3,513 trainable parameters for the model.
-```
-Model: "sequential"
-____________________________________________________________
-Layer (type) 		Output Shape 				Param #
-____________________________________________________________
-lstm (LSTM) 		(None, 10, 15) 				2340
-____________________________________________________________
-time_distributed 	(TimeDistri (None, 10, 15) 	240
-____________________________________________________________
-time_distributed_1	(TimeDist (None, 10, 15) 	240
-____________________________________________________________
-dropout (Dropout) 	(None, 10, 15) 				0
-____________________________________________________________
-time_distributed_2 	(TimeDist (None, 10, 15) 	240
-____________________________________________________________
-flatten (Flatten) 	(None, 150) 				0
-____________________________________________________________
-dropout_1 (Dropout) (None, 150) 				0
-____________________________________________________________
-dense_3 (Dense) 	(None, 3) 					453
-____________________________________________________________
-Total params: 3,513
-Trainable params: 3,513
-Non-trainable params: 0
-____________________________________________________________________
-```
+
+Stuff
+
 ### CNN
 ![image](https://github.com/bl75d/CS539MLFinalProj/blob/master/FinalProj/Jeff/CNN_parameter.png)
 
@@ -115,7 +93,7 @@ In this part of testing results, we only picked the most significant stock "BABA
 ## CNN
 
 ## LSTM
-Stuff
+
 # Discussion
 
 ## What can we learn from simple classifications
