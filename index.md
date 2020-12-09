@@ -110,11 +110,11 @@ The table below shows the scores of all the models under all the stocks using sh
 ### NAV of All Models based on "BABA" Stock Using Shuffled Splite
 In this part of testing results, we only picked the most significant stock "BABA", which is increasing in a relatively unstable way.
 #### NAV for models without shuffle
-![CON-NAV1](https://user-images.githubusercontent.com/48306738/101675990-89353300-3a28-11eb-8439-27932cb6b6f4.png)
-![CON-NAV2](https://user-images.githubusercontent.com/48306738/101675994-89cdc980-3a28-11eb-9937-fedc89014c37.png)
+![CON-NAV1](https://user-images.githubusercontent.com/48306738/101701271-95cb8280-3a4c-11eb-9ec7-ad6d56e5d59d.png)
+![CON-NAV2](https://user-images.githubusercontent.com/48306738/101701276-96fcaf80-3a4c-11eb-9c4f-02545ffc5634.png)
 #### NAV for models without shuffle
-![RAN-NAV1](https://user-images.githubusercontent.com/48306738/101676052-9e11c680-3a28-11eb-9f74-ab4c0d8ab948.png)
-![RAN-NAV2](https://user-images.githubusercontent.com/48306738/101676056-9f42f380-3a28-11eb-9f44-e77333c935e7.png)
+![RAN-NAV1](https://user-images.githubusercontent.com/48306738/101701282-995f0980-3a4c-11eb-9771-e5543526c6d8.png)
+![RAN-NAV2](https://user-images.githubusercontent.com/48306738/101701287-9a903680-3a4c-11eb-9a06-90196e9834be.png)
 ## CNN
 
 ## LSTM
