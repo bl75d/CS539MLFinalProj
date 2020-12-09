@@ -67,12 +67,15 @@ However, in NAV transaction simulation, we have made 90% profits at the 90th day
 ## Simple Classification models
 ### Scores of Eleven Stocks and Using continuly Splite
 The table below shows the scores of all the models under all the stocks using continues split.
-
+![Con-split](https://user-images.githubusercontent.com/48306738/101673889-c0eeab80-3a25-11eb-88cb-691c61f02cc2.png)
 ### Scores of Eleven Stocks and Eight Models using Shuffled Splite
 The table below shows the scores of all the models under all the stocks using shuffled split.
-
+![random-split](https://user-images.githubusercontent.com/48306738/101673961-dbc12000-3a25-11eb-82a6-6dc521a1414a.png)
 ### NAV of All Models based on "BABA" Stock Using Shuffled Splite
-In this part of testing results, we only picked the most significant stock "BABA", which is increasing in a relatively unstable way. And the split way is Shuffled splite.
+In this part of testing results, we only picked the most significant stock "BABA", which is increasing in a relatively unstable way.
+#### NAV for models without shuffle
+
+#### NAV for models without shuffle
 
 
 # Discussion
