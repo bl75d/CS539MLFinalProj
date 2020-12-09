@@ -35,7 +35,17 @@ The picked eleven stocks are: "AAPL","TSLA","AMZN","GOOG","FB","NIO","BYND","FSL
 ### Collection
 To accomplish the task, we will first perform data mining with the Finnhub API. The API allows for straightforward collection of historical stock data at different time intervals. For example, we could collect minute, hourly, daily stock data based on the timeframe we wish to use. This will likely affect the model’s responsiveness to slight market variations and can be a component that we test to compare results. From this data, we can perform various other feature extraction techniques. One such feature is a Simple Moving Average (SMA), a metric used by traders on Wall Street. To add this feature, we select a window size (n) as a parameter and average the stock price over the last n quotes. This methodology can be applied to a variety of indicators detailed further below.
 ### Feature Engineering
-
+There are 48 columns and approximately 500 rows of data in total. 
+### Missing Value
+There are 5 columns with missing value. For stock **indicator's missing value (numerical)**, missing represents there is no such value. Therefore we replace them with 0s. For other **categorical** missing value, we fill in with the most common value.
+### Numerical Data
+We apply normalization to all of the numerical columns.
+### Categorical Data
+We apply one-hot encoding to all of the categorical columns.
+### Column Removal
+- Columns that are highly correated to each other
+- Columns that have share one value 
+- Columns that have too few data points
 
 ### Labeling
 The goal of the project is to apply machine learning techniques on stock history data to generate instructions of trading strategy for the future, the instructions are basically indicators for users to either buy or sell a stock with confidence. Unlike other machine learning on stock projects that use stock price as the target for model training and testing, this project takes the indicators as the target. Although these are implicit in the stock data, it is impossible to acquire such information from the dataset directly, thus, algorithms that can generate target labels from the data set are necessary.
