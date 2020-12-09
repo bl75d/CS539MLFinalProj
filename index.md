@@ -91,7 +91,32 @@ In this part of testing results, we only picked the most significant stock "BABA
 ## CNN
 
 ## LSTM
-
+The Long Short-Term Memory model below has a layer width of 60 and two separate dropouts. Note that there is a total of 3,513 trainable parameters for the model.
+```
+Model: "sequential"
+____________________________________________________
+Layer (type) Output Shape Param #
+____________________________________________________
+lstm (LSTM) (None, 10, 15) 2340
+____________________________________________________
+time_distributed (TimeDistri (None, 10, 15) 240
+____________________________________________________
+time_distributed_1 (TimeDist (None, 10, 15) 240
+____________________________________________________
+dropout (Dropout) (None, 10, 15) 0
+____________________________________________________
+time_distributed_2 (TimeDist (None, 10, 15) 240
+____________________________________________________
+flatten (Flatten) (None, 150) 0
+____________________________________________________
+dropout_1 (Dropout) (None, 150) 0
+____________________________________________________
+dense_3 (Dense) (None, 3) 453
+____________________________________________________
+Total params: 3,513
+Trainable params: 3,513
+Non-trainable params: 0
+```
 # Discussion
 
 ## What can we learn from simple classifications
