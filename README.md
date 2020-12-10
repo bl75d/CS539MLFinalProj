@@ -42,3 +42,5 @@ The above line will load a trained model from the default save location `model_c
 
 ## Aditional Results
 Additional code is available to create plots and graphs, however, that is currently out of the scope of this Readme. If you are interested in this code, check out `results.py`, it uses a similar argument structure as above with the available options inside of the file. Also check out `monte.sh` for code to easily run multiple different models from the command line in an HPC environment such as ace.wpi.edu
+
+The repo is currently in a restructuring state, please see master branch for additional models. Proceed at your own risk.
