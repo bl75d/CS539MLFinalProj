@@ -53,12 +53,12 @@ We apply one-hot encoding to all of the categorical columns.
 ### Labeling
 The goal of the project is to apply machine learning techniques on stock history data to generate instructions of trading strategy for the future, the instructions are basically indicators for users to either buy or sell a stock with confidence. Unlike other machine learning on stock projects that use stock price as the target for model training and testing, this project takes the indicators as the target. Although these are implicit in the stock data, it is impossible to acquire such information from the dataset directly, thus, algorithms that can generate target labels from the data set are necessary.
 
-<img src=https://user-images.githubusercontent.com/21250458/101705423-e6df7480-3a54-11eb-99fd-c91edefcd994.PNG" width="60%" align="center">
+<img src="https://user-images.githubusercontent.com/21250458/101705423-e6df7480-3a54-11eb-99fd-c91edefcd994.PNG" width="60%" align="center">
 
 As the explanation of trading indicators mentioned above, the labels are set to be three signals, buy, hold, and sell, which indicates the trading strategy for the current position. There are 2 major methods for generating labels that turn out to be practical.
 The first one is calculated based on price change in percentage between two data, take three-quarters of the positive price change as buy, three-quarters of the negative price change as sell, the rest of the data will be labeled as a hold. The labels for buy, sell, and hold are relatively evenly distributed, however, it may not reflect the buy and sell position very accurately.
 
-<img src=https://user-images.githubusercontent.com/21250458/101705488-0aa2ba80-3a55-11eb-8b04-71ea9d8e4627.PNG" width="60%" align="center">
+<img src="https://user-images.githubusercontent.com/21250458/101705488-0aa2ba80-3a55-11eb-8b04-71ea9d8e4627.PNG" width="60%" align="center">
 
 The second one uses two features of the stock called moving average convergence divergence(MACD) and relative strength index(RSI), it applies Savitzky–Golay filter on local MACD peaks and valleys, user can choose the window size of the filter and whether apply RSI to generate a more strict and accurate rule on labeling, it heavily affects the distribution of labels, thus, the label may not evenly be distributed, it has a huge impact on the training process.
 
