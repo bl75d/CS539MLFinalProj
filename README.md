@@ -1,4 +1,4 @@
-﻿# Stock Market Prediction AI
+﻿# Stock Trading Strategy
 
 ## Installation
 
