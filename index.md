@@ -164,7 +164,9 @@ In this part of testing results, we only picked the most significant stock "BABA
 ## CNN
 
 ## LSTM
-![LSTM-TRAIN](./train_layer-width_60_Training.png){:width="500px" align="center"}
+<p align="center" width="100%">
+![LSTM-TRAIN](./train_layer-width_60_Training.png){:width="500px"}
+</p>
 ![LSTM-TEST](./test_layer-width_60_Testing.png){:width="500px"}
 # Discussion
 
