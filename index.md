@@ -1,4 +1,4 @@
-# Stock Market Trading Thing
+# Apply Machine Learning On Stock Trading Strategy
 <style>
 h1 {
   text-align: center;
