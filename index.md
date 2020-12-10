@@ -146,7 +146,7 @@ Stock price data was reshaped as images in shape of 12*21, which represented sto
 Apple company's stock price data in past 40 years was resampled into 6879 (instances) by moving all pixels forward at step of 1.
 
 <p align="center" width="100%">
-  <img width="60%" src="https://user-images.githubusercontent.com/21250458/101707897-2d839d80-3a5a-11eb-8e52-49c97928d80a.png">
+<img src="https://user-images.githubusercontent.com/21250458/101707897-2d839d80-3a5a-11eb-8e52-49c97928d80a.png" width="60%" class="centerImage">
 </p>
 
 We have attained an accuracy of 39.2%.
