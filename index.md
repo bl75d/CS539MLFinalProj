@@ -165,10 +165,11 @@ In this part of testing results, we only picked the most significant stock "BABA
 
 ## LSTM
 <p align="center" width="100%">
-  <img width="32%" src="./train_layer-width_60_Training.png"> 
-<!-- ![LSTM-TRAIN](./train_layer-width_60_Training.png){:width="500px"} -->
+  <img width="60%" src="./train_layer-width_60_Training.png"> 
+  <img width="60%" src="./test_layer-width_60_Testing.png"> 
+
+<!--![LSTM-TEST](./test_layer-width_60_Testing.png){:width="500px"}-->
 </p>
-![LSTM-TEST](./test_layer-width_60_Testing.png){:width="500px"}
 # Discussion
 
 ## What can we learn from simple classifications
