@@ -141,6 +141,20 @@ However, in NAV transaction simulation, we have made 90% profits at the 90th day
 ### Scores of Eleven Stocks and Using continuly Splite
 The table below shows the scores of all the models under all the stocks using continues split.
 ![Con-split](https://user-images.githubusercontent.com/48306738/101673889-c0eeab80-3a25-11eb-88cb-691c61f02cc2.png)
+|Stock|RBF SVM|Decision Tree|MLCP|Nearest Neighbors|Gaussian Process|Random Forest|AdaBoost|Naive Bayes|
+|--------| ---| -- | -------- | ---|---|---|--|--|
+|**AAPL**|0.63|0.54|0.63|0.40|0.61|0.59|0.56|0.25|
+|**TSLA**|0.66|0.54|0.65|0.57|0.66|0.62|0.37|0.19|
+|**AMZN**|0.64|0.34|0.64|0.57|0.64|0.67|0.63|0.35|
+|**GOOG**|0.70|0.60|0.70|0.56|0.70|0.66|0.71|0.31|
+|**FB**|0.65|0.61|0.65|0.63|0.65|0.70|0.67|0.30|
+|**NIO**|0.78|0.51|0.78|0.60|0.78|0.57|0.50|0.14|
+|**BYND**|0.90|0.65|0.90|0.73|0.90|0.78|0.83|0.70|
+|**FSLY**|0.84|0.60|0.79|0.55|0.84|0.66|0.72|0.08|
+|**MRNA**|0.78|0.54|0.77|0.76|0.77|0.89|0.52|0.16|
+|**BABA**|0.72|0.47|0.72|0.48|0.72|0.63|0.63|0.40|
+|**BLNK**|0.50|0.51|0.52|0.52|0.50|0.55|0.58|0.24|
+
 ### Scores of Eleven Stocks and Eight Models using Shuffled Splite
 The table below shows the scores of all the models under all the stocks using shuffled split.
 ![random-split](https://user-images.githubusercontent.com/48306738/101673961-dbc12000-3a25-11eb-82a6-6dc521a1414a.png)
