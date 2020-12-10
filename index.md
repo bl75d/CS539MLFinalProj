@@ -20,7 +20,7 @@ The difference between our model and those most common models in the world is th
 # Stocks Picked
 ## Stock Trends of 11 Picked Stocks
 The picked eleven stocks are: "AAPL","TSLA","AMZN","GOOG","FB","NIO","BYND","FSLY","MRNA","BABA","BLNK".
-## Relative stable Stocks
+### Relative stable Stocks
 "AAPL", "TSLA", "AMZN", "GOOG", and "FB" have relative stable stock price trends. They are big Internet companies and their stock price keeps rise most of the time.
 ![AAPL](https://user-images.githubusercontent.com/48306738/101704036-dd084200-3a51-11eb-8197-b1393e779119.png)
 ### Flat and Increase Stocks
