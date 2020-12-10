@@ -1,3 +1,11 @@
+#!/bin/python3.6
+import os
+cwd = os.getcwd()
+print(cwd)
+import sys
+print (sys.version)
+
+
 from Data.Collect import *
 from Data.Process import *
 from Data.File_IO import *
@@ -54,10 +62,10 @@ def main(args):
         print("{}Label Distribution:{}".format(c.BLUE,c.RESET))
         # print("Train:", train_counter)
         print("Train Data:")
-        [print("\tLabel: {}. Percent: {:.1f}%".format(i, p)) for i,p in train_percent]
+        # [print("\tLabel: {}. Percent: {:.1f}%".format(i, p)) for i,p in train_percent]
         # print("Test:", test_counter)
         print("Test Data:")
-        [print("\tLabel: {}. Percent: {:.1f}%".format(i, p)) for i,p in test_percent]
+        # [print("\tLabel: {}. Percent: {:.1f}%".format(i, p)) for i,p in test_percent]
 
         return train_percent, test_percent
 

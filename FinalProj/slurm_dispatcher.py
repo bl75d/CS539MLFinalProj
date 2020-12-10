@@ -1,4 +1,5 @@
-from slurm import Slurm
+#!/bin/python3.6
+from simple_slurm import Slurm
 
 slurm = Slurm(
     output=(
@@ -8,7 +9,7 @@ slurm = Slurm(
     )
 r = slurm.sbatch('python main.py -p')
 print(r)
-r = slurm.sbatch('python main.py -p')
-print(r)
-r = slurm.sbatch('python main.py -p')
-print(r)
+# r = slurm.sbatch('python3.6 main.py -p')
+# print(r)
+# r = slurm.sbatch('python2.6 main.py -p')
+# print(r)

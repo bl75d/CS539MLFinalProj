@@ -113,12 +113,12 @@ def GetStockData(ticker,prd,intvl,use_more_data=False):
     stock['open_2_sma']=stockdf['open_2_sma']
 
     # MACD
-    stock['macd']=stockdf['macd']
+    # stock['macd']=stockdf['macd']
 
     # MACD signal line
-    stock['macds']
+    # stock['macds']
     # MACD histogram
-    stock['macdh']=stockdf['macdh']
+    # stock['macdh']=stockdf['macdh']
 
     # bolling, including upper band and lower band
     stock['boll']=stockdf['boll']
@@ -134,67 +134,67 @@ def GetStockData(ticker,prd,intvl,use_more_data=False):
     # # count forward(future) where close price is larger than 10
     # stock['close_10.0_ge_5_fc']=stockdf['close_10.0_ge_5_fc']
 
-    # 6 days RSI
-    stock['rsi_6']=stockdf['rsi_6']
+    # # 6 days RSI
+    # stock['rsi_6']=stockdf['rsi_6']
 
-    # 12 days RSI
-    stock['rsi_12']=stockdf['rsi_12']
+    # # 12 days RSI
+    # stock['rsi_12']=stockdf['rsi_12']
 
-    # 10 days WR
-    stock['wr_10']=stockdf['wr_10']
+    # # 10 days WR
+    # stock['wr_10']=stockdf['wr_10']
 
-    # 6 days WR
-    stock['wr_6']=stockdf['wr_6']
+    # # 6 days WR
+    # stock['wr_6']=stockdf['wr_6']
 
-    # CCI, default to 14 days
-    stock['cci']=stockdf['cci']
+    # # CCI, default to 14 days
+    # stock['cci']=stockdf['cci']
 
-    # 20 days CCI
-    stock['cci_20']=stockdf['cci_20']
+    # # 20 days CCI
+    # stock['cci_20']=stockdf['cci_20']
 
-    # TR (true range)
-    stock['tr']=stockdf['tr']
+    # # TR (true range)
+    # stock['tr']=stockdf['tr']
 
-    # ATR (Average True Range)
-    stock['atr']=stockdf['atr']
+    # # ATR (Average True Range)
+    # stock['atr']=stockdf['atr']
 
-    # DMA, difference of 10 and 50 moving average
-    stock['dma']=stockdf['dma']
+    # # DMA, difference of 10 and 50 moving average
+    # stock['dma']=stockdf['dma']
 
-    # DMI
-    # +DI, default to 14 days
-    stock['pdi']=stockdf['pdi']
+    # # DMI
+    # # +DI, default to 14 days
+    # stock['pdi']=stockdf['pdi']
 
-    # -DI, default to 14 days
-    stock['mdi']=stockdf['mdi']
+    # # -DI, default to 14 days
+    # stock['mdi']=stockdf['mdi']
 
-    # DX, default to 14 days of +DI and -DI
-    stock['dx']=stockdf['dx']
-    # ADX, 6 days SMA of DX, same as stock['dx_6_ema']
-    stock['adx']=stockdf['adx']
-    # ADXR, 6 days SMA of ADX, same as stock['adx_6_ema']
-    stock['adxr']=stockdf['adxr']
+    # # DX, default to 14 days of +DI and -DI
+    # stock['dx']=stockdf['dx']
+    # # ADX, 6 days SMA of DX, same as stock['dx_6_ema']
+    # stock['adx']=stockdf['adx']
+    # # ADXR, 6 days SMA of ADX, same as stock['adx_6_ema']
+    # stock['adxr']=stockdf['adxr']
 
-    # TRIX, default to 12 days
-    stock['trix']=stockdf['trix']
+    # # TRIX, default to 12 days
+    # stock['trix']=stockdf['trix']
 
-    # TRIX based on the close price for a window of 3
-    stock['close_3_trix']=stockdf['close_3_trix']
+    # # TRIX based on the close price for a window of 3
+    # stock['close_3_trix']=stockdf['close_3_trix']
 
-    # MATRIX is the simple moving average of TRIX
-    stock['trix_9_sma']=stockdf['trix_9_sma']
-    # TEMA, another implementation for triple ema
-    stock['tema']=stockdf['tema']
+    # # MATRIX is the simple moving average of TRIX
+    # stock['trix_9_sma']=stockdf['trix_9_sma']
+    # # TEMA, another implementation for triple ema
+    # stock['tema']=stockdf['tema']
 
-    # TEMA based on the close price for a window of 2
+    # # TEMA based on the close price for a window of 2
 
-    stock['close_2_tema']=stockdf['close_2_tema']
+    # stock['close_2_tema']=stockdf['close_2_tema']
 
-    # VR, default to 26 days
-    stock['vr']=stockdf['vr']
+    # # VR, default to 26 days
+    # stock['vr']=stockdf['vr']
 
-    # MAVR is the simple moving average of VR
-    stock['vr_6_sma']=stockdf['vr_6_sma']
+    # # MAVR is the simple moving average of VR
+    # stock['vr_6_sma']=stockdf['vr_6_sma']
 
 
     # *****************************
@@ -265,11 +265,12 @@ def generate_pct_label(stock):
     adj_price= np.asarray(stock['amount'] / stock['volume'])
     price_change_pct=(shift(adj_price, -1)-adj_price)/adj_price
 
-    n_median=np.median(price_change_pct[price_change_pct<0])
-    p_median=np.median(price_change_pct[price_change_pct>0])
+    n_median=np.median(price_change_pct[price_change_pct<0])+.0035
+    p_median=np.median(price_change_pct[price_change_pct>0])-.002
     # print(n_median)
     # print(p_median)
     stock['label'] = 1
+    print(p_median)
     for i in range(price_change_pct.shape[0] - 1):
             if (price_change_pct[i] >= p_median):
                     stock['label'].iloc[i] = 2
