@@ -13,7 +13,7 @@ IDE: Pycharm
     press + button to add required python Package(type in library name,hit install package)
     Done!
 
-**Run:**
+# Run:
 Each part of the work is in it named folder under the /FinalProj, simply open the fold, there is a ReadMe.md file describing the part of the work and giving instructions on running the part.
 
 
