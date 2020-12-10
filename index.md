@@ -141,20 +141,6 @@ However, in NAV transaction simulation, we have made 90% profits at the 90th day
 ### Scores of Eleven Stocks and Using continuly Splite
 <table><thead><tr><th>Stock</th><th>RBF SVM</th><th>Decision Tree</th><th>MLCP</th><th>Nearest Neighbors</th><th>Gaussian Process</th><th>Random Forest</th><th>AdaBoost</th><th>Naive Bayes</th></tr></thead><tbody><tr><td>AAPL</td><td>0.63</td><td>0.54</td><td>0.63</td><td>0.40</td><td>0.61</td><td>0.59</td><td>0.56</td><td>0.25</td></tr><tr><td>TSLA</td><td>0.66</td><td>0.54</td><td>0.65</td><td>0.57</td><td>0.66</td><td>0.62</td><td>0.37</td><td>0.19</td></tr><tr><td>AMZN</td><td>0.64</td><td>0.34</td><td>0.64</td><td>0.57</td><td>0.64</td><td>0.67</td><td>0.63</td><td>0.35</td></tr><tr><td>GOOG</td><td>0.70</td><td>0.60</td><td>0.70</td><td>0.56</td><td>0.70</td><td>0.66</td><td>0.71</td><td>0.31</td></tr><tr><td>FB</td><td>0.65</td><td>0.61</td><td>0.65</td><td>0.63</td><td>0.65</td><td>0.70</td><td>0.67</td><td>0.30</td></tr><tr><td>NIO</td><td>0.78</td><td>0.51</td><td>0.78</td><td>0.60</td><td>0.78</td><td>0.57</td><td>0.50</td><td>0.14</td></tr><tr><td>BYND</td><td>0.90</td><td>0.65</td><td>0.90</td><td>0.73</td><td>0.90</td><td>0.78</td><td>0.83</td><td>0.70</td></tr><tr><td>FSLY</td><td>0.84</td><td>0.60</td><td>0.79</td><td>0.55</td><td>0.84</td><td>0.66</td><td>0.72</td><td>0.08</td></tr><tr><td>MRNA</td><td>0.78</td><td>0.54</td><td>0.77</td><td>0.76</td><td>0.77</td><td>0.89</td><td>0.52</td><td>0.16</td></tr><tr><td>BABA</td><td>0.72</td><td>0.47</td><td>0.72</td><td>0.48</td><td>0.72</td><td>0.63</td><td>0.63</td><td>0.40</td></tr><tr><td>BLNK</td><td>0.50</td><td>0.51</td><td>0.52</td><td>0.52</td><td>0.50</td><td>0.55</td><td>0.58</td><td>0.24</td></tr></tbody></table>
 
-The table below shows the scores of all the models under all the stocks using continues split.
-|Stock|RBF SVM|Decision Tree|MLCP|Nearest Neighbors|Gaussian Process|Random Forest|AdaBoost|Naive Bayes|
-|--------|----|----|----|--- |--- |--- |--  |--  |
-|**AAPL**|0.63|0.54|0.63|0.40|0.61|0.59|0.56|0.25|
-|**TSLA**|0.66|0.54|0.65|0.57|0.66|0.62|0.37|0.19|
-|**AMZN**|0.64|0.34|0.64|0.57|0.64|0.67|0.63|0.35|
-|**GOOG**|0.70|0.60|0.70|0.56|0.70|0.66|0.71|0.31|
-|**FB**  |0.65|0.61|0.65|0.63|0.65|0.70|0.67|0.30|
-|**NIO** |0.78|0.51|0.78|0.60|0.78|0.57|0.50|0.14|
-|**BYND**|0.90|0.65|0.90|0.73|0.90|0.78|0.83|0.70|
-|**FSLY**|0.84|0.60|0.79|0.55|0.84|0.66|0.72|0.08|
-|**MRNA**|0.78|0.54|0.77|0.76|0.77|0.89|0.52|0.16|
-|**BABA**|0.72|0.47|0.72|0.48|0.72|0.63|0.63|0.40|
-|**BLNK**|0.50|0.51|0.52|0.52|0.50|0.55|0.58|0.24|
 
 ### Scores of Eleven Stocks and Eight Models using Shuffled Splite
 The table below shows the scores of all the models under all the stocks using shuffled split.
