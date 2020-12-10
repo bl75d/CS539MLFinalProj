@@ -204,3 +204,6 @@ The time continuety doesn't effect most of the models that much. As a matter of 
 ### The NAV performance
 From the tables and the NAV figures, we can clear tell that the accuracy of the model, or the score of the mdoel does not have anything to do with NAV. The NAV is about making right decision at a right time. It seems that the models using random split data have a better performance, and since the data are shuffled, they can perfectly solve those flat first, unstable later trend models.
 ## CNN and LSTM
+- Compared to LSTM, CNN is performing better in our case
+- CNN has more greater than 10 times more trainable parameters in CNN than in LSTM
+- CNN might be doing a better at recognizing the changes of the direction
