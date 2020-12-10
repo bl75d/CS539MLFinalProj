@@ -161,19 +161,8 @@ However, in NAV transaction simulation, we have made 90% profits at the 90th day
 ### Scores of Eleven Stocks and Eight Models using Shuffled Splite
 The table below shows the scores of all the models under all the stocks using shuffled split.
 <table><thead><tr><th>Stock</th><th>RBF SVM</th><th>Decision Tree</th><th>MLCP</th><th>Nearest Neighbors</th><th>Gaussian Process</th><th>Random Forest</th><th>AdaBoost</th><th>Naive Bayes</th></tr></thead><tbody><tr><td>AAPL</td><td>0.75</td><td>0.67</td><td>0.76</td><td>0.67</td><td>0.75</td><td>0.75</td><td>0.83</td><td>0.60</td></tr><tr><td>TSLA</td><td>0.77</td><td>0.70</td><td>0.78</td><td>0.71</td><td>0.77</td><td>0.76</td><td>0.57</td><td>0.67</td></tr><tr><td>AMZN</td><td>0.74</td><td>0.75</td><td>0.74</td><td>0.70</td><td>0.74</td><td>0.75</td><td>0.78</td><td>0.66</td></tr><tr><td>GOOG</td><td>0.72</td><td>0.70</td><td>0.74</td><td>0.67</td><td>0.72</td><td>0.75</td><td>0.82</td><td>0.64</td></tr><tr><td>FB</td><td>0.77</td><td>0.74</td><td>0.77</td><td>0.71</td><td>0.77</td><td>0.78</td><td>0.75</td><td>0.71</td></tr><tr><td>NIO</td><td>0.74</td><td>0.68</td><td>0.74</td><td>0.65</td><td>0.74</td><td>0.68</td><td>0.67</td><td>0.67</td></tr><tr><td>BYND</td><td>0.68</td><td>0.65</td><td>0.68</td><td>0.63</td><td>0.68</td><td>0.70</td><td>0.74</td><td>0.62</td></tr><tr><td>FSLY</td><td>0.68</td><td>0.58</td><td>0.71</td><td>0.58</td><td>0.68</td><td>0.67</td><td>0.72</td><td>0.60</td></tr><tr><td>MRNA</td><td>0.72</td><td>0.64</td><td>0.71</td><td>0.62</td><td>0.72</td><td>0.70</td><td>0.73</td><td>0.62</td></tr><tr><td>BABA</td><td>0.73</td><td>0.70</td><td>0.73</td><td>0.62</td><td>0.73</td><td>0.74</td><td>0.63</td><td>0.58</td></tr><tr><td>BLNK</td><td>0.75</td><td>0.64</td><td>0.76</td><td>0.74</td><td>0.75</td><td>0.74</td><td>0.67</td><td>0.74</td></tr></tbody></table>
-|Stock|RBF SVM|Decision Tree|MLCP|Nearest Neighbors|Gaussian Process|Random Forest|AdaBoost|Naive Bayes|
-|--------|--- |--  |--  |--- |--- |--- |--  |--  |
-|**AAPL**|0.75|0.67|0.76|0.67|0.75|0.75|0.83|0.60|
-|**TSLA**|0.77|0.70|0.78|0.71|0.77|0.76|0.57|0.67|
-|**AMZN**|0.74|0.75|0.74|0.70|0.74|0.75|0.78|0.66|
-|**GOOG**|0.72|0.70|0.74|0.67|0.72|0.75|0.82|0.64|
-|**FB**|0.77|0.74|0.77|0.71|0.77|0.78|0.75|0.71|
-|**NIO**|0.74|0.68|0.74|0.65|0.74|0.68|0.67|0.67|
-|**BYND**|0.68|0.65|0.68|0.63|0.68|0.70|0.74|0.62|
-|**FSLY**|0.68|0.58|0.71|0.58|0.68|0.67|0.72|0.60|
-|**MRNA**|0.72|0.64|0.71|0.62|0.72|0.70|0.73|0.62|
-|**BABA**|0.73|0.70|0.73|0.62|0.73|0.74|0.63|0.58|
-|**BLNK**|0.75|0.64|0.76|0.74|0.75|0.74|0.67|0.74|
+
+
 ### NAV of All Models based on "BABA" Stock Using Shuffled Splite
 In this part of testing results, we only picked the most significant stock "BABA", which is increasing in a relatively unstable way.
 #### NAV for models without shuffle
