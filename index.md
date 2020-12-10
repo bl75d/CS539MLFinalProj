@@ -90,32 +90,34 @@ For Kneighbors, we are using k = 3, since we only have three labels. For the SVM
 ### LSTM
 
 The Long Short-Term Memory model below has a layer width of 60 and two separate dropouts. Note that there is a total of 3,513 trainable parameters for the model.
+<p align="center">
 ```
 Model: "sequential"
 ___________________________________________________________________
-Layer (type)               Output Shape                 Param #
+Layer (type)               Output Shape                 Param #    
 ___________________________________________________________________
-lstm (LSTM)                (None, 10, 15)               2340
+lstm (LSTM)                (None, 10, 15)               2340       
 ___________________________________________________________________
-time_distributed           (TimeDistri (None, 10, 15)   240
+time_distributed           (TimeDistri (None, 10, 15)   240        
 ___________________________________________________________________
-time_distributed_1         (TimeDist (None, 10, 15)     240
+time_distributed_1         (TimeDist (None, 10, 15)     240        
 ___________________________________________________________________
-dropout (Dropout)          (None, 10, 15)               0
+dropout (Dropout)          (None, 10, 15)               0          
 ___________________________________________________________________
-time_distributed_2         (TimeDist (None, 10, 15)     240
+time_distributed_2         (TimeDist (None, 10, 15)     240        
 ___________________________________________________________________
-flatten (Flatten)          (None, 150)                  0
+flatten (Flatten)          (None, 150)                  0          
 ___________________________________________________________________
-dropout_1 (Dropout)        (None, 150)                  0
+dropout_1 (Dropout)        (None, 150)                  0          
 ___________________________________________________________________
-dense_3 (Dense)            (None, 3)                    453
+dense_3 (Dense)            (None, 3)                    453        
 ___________________________________________________________________
-Total params: 3,513
-Trainable params: 3,513
-Non-trainable params: 0
+Total params: 3,513                                                
+Trainable params: 3,513                                            
+Non-trainable params: 0                                            
 ___________________________________________________________________
 ```
+ </p>
 ### CNN
 ```
 Model: "sequential"
