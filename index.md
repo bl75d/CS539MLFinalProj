@@ -1,8 +1,20 @@
 # Stock Market Trading Thing
 <style>
-h1 {text-align: center;}
-p {text-align: center;}
-div {text-align: center;}
+h1 {
+  text-align: center;
+  text-align: justify;
+  text-justify: inter-word;
+}
+p {
+  text-align: center;
+  text-align: justify;
+  text-justify: inter-word;
+  }
+div {
+  text-align: center;
+  text-align: justify;
+  text-justify: inter-word;
+  }
 </style>
 
 # Background
