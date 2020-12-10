@@ -14,7 +14,7 @@ IDE: Pycharm
     Done!
 
 # Run:
-## Master Branch:
+## master Branch:
 Each part of the work is in it named folder under the /FinalProj, simply open the fold, there is a ReadMe.md file describing the part of the work and giving instructions on running the part.
 ## davis Branch:
 ReadMe.md under the branch shows how to run the framework
