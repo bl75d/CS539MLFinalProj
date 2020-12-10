@@ -22,12 +22,14 @@ The difference between our model and those most common models in the world is th
 The picked eleven stocks are: "AAPL","TSLA","AMZN","GOOG","FB","NIO","BYND","FSLY","MRNA","BABA","BLNK".
 ## Relative stable Stocks
 "AAPL", "TSLA", "AMZN", "GOOG", and "FB" have relative stable stock price trends. They are big Internet companies and their stock price keeps rise most of the time.
+![AAPL](https://user-images.githubusercontent.com/48306738/101704036-dd084200-3a51-11eb-8197-b1393e779119.png)
 ### Flat and Increase Stocks
 "NIO", "MRNA" and "BLNK" has a very stable trend in the beginning, however, their price increased dramatically in the latter days.
+![BLNK](https://user-images.githubusercontent.com/48306738/101704050-e2658c80-3a51-11eb-9de7-647dce4f9d7e.png)
 ### Relative Unstable Stocks
 "BYND", "FSLY" and "BABA" have a relatively unstable trend. Their price keeps going up and down and it would be really hard to correctly calculate them.
-
-
+![BABA](https://user-images.githubusercontent.com/48306738/101704046-e0033280-3a51-11eb-9d50-985eb6b26fb9.png)
+![FSLY](https://user-images.githubusercontent.com/48306738/101704056-e5607d00-3a51-11eb-9fc9-552c2eff2f57.png)
 # Methods
 
 ## Data Prepocessing
