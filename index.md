@@ -168,8 +168,8 @@ In this part of testing results, we only picked the most significant stock "BABA
 ## CNN
 
 ## LSTM
-![LSTM-TRAIN](./train_layer-width_60_Training.png){:width="500px"}
-![LSTM-TEST](./test_layer-width_60_Testing.png){:width="400px"}
+![LSTM-TRAIN](./train_layer-width_60_Training.png){:width="500px" align="center"}
+![LSTM-TEST](./test_layer-width_60_Testing.png){:width="500px"}
 # Discussion
 
 ## What can we learn from simple classifications
