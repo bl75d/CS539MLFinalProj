@@ -1,5 +1,9 @@
 # Stock Market Trading Thing
-
+<style>
+h1 {text-align: center;}
+p {text-align: center;}
+div {text-align: center;}
+</style>
 
 # Background
 
@@ -90,7 +94,6 @@ For Kneighbors, we are using k = 3, since we only have three labels. For the SVM
 ### LSTM
 
 The Long Short-Term Memory model below has a layer width of 60 and two separate dropouts. Note that there is a total of 3,513 trainable parameters for the model.
-<p align="center">
 ```
 Model: "sequential"
 ___________________________________________________________________
@@ -117,7 +120,6 @@ Trainable params: 3,513
 Non-trainable params: 0                                            
 ___________________________________________________________________
 ```
- </p>
 ### CNN
 ```
 Model: "sequential"
