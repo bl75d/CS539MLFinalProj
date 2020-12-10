@@ -159,14 +159,6 @@ Stock price data was reshaped as images in shape of 12*21, which represented sto
 
 Apple company's stock price data in past 40 years was resampled into 6879 (instances) by moving all pixels forward at step of 1.
 
-<p align="center" width="100%">
-<img src="https://user-images.githubusercontent.com/21250458/101707897-2d839d80-3a5a-11eb-8e52-49c97928d80a.png" width="60%" class="centerImage">
-</p>
-
-After tuning and choosing parameters with the help of cross validation, we have attained an accuracy of **39.2%**.
-
-However, in NAV transaction simulation, we have made 90% profits at the 90th day and 50% at the end of 100 days.
-
 # Results
 
 ## Simple Classification models
