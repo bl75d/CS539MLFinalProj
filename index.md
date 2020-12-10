@@ -160,7 +160,13 @@ However, in NAV transaction simulation, we have made 90% profits at the 90th day
 
 ### Scores of Eleven Stocks and Eight Models using Shuffled Splite
 The table below shows the scores of all the models under all the stocks using shuffled split.
-![random-split](https://user-images.githubusercontent.com/48306738/101673961-dbc12000-3a25-11eb-82a6-6dc521a1414a.png)
+<table>
+<thead>
+  <tr>
+    <th>Stock<br>RBF SVM<br>Decision Tree<br>MLCP<br>Nearest Neighbors<br>Gaussian Process<br>Random Forest<br>AdaBoost<br>Naive Bayes<br>AAPL<br>0.75<br>0.67<br>0.76<br>0.67<br>0.75<br>0.75<br>0.83<br>0.60<br>TSLA<br>0.77<br>0.70<br>0.78<br>0.71<br>0.77<br>0.76<br>0.57<br>0.67<br>AMZN<br>0.74<br>0.75<br>0.74<br>0.70<br>0.74<br>0.75<br>0.78<br>0.66<br>GOOG<br>0.72<br>0.70<br>0.74<br>0.67<br>0.72<br>0.75<br>0.82<br>0.64<br>FB<br>0.77<br>0.74<br>0.77<br>0.71<br>0.77<br>0.78<br>0.75<br>0.71<br>NIO<br>0.74<br>0.68<br>0.74<br>0.65<br>0.74<br>0.68<br>0.67<br>0.67<br>BYND<br>0.68<br>0.65<br>0.68<br>0.63<br>0.68<br>0.70<br>0.74<br>0.62<br>FSLY<br>0.68<br>0.58<br>0.71<br>0.58<br>0.68<br>0.67<br>0.72<br>0.60<br>MRNA<br>0.72<br>0.64<br>0.71<br>0.62<br>0.72<br>0.70<br>0.73<br>0.62<br>BABA<br>0.73<br>0.70<br>0.73<br>0.62<br>0.73<br>0.74<br>0.63<br>0.58<br>BLNK<br>0.75<br>0.64<br>0.76<br>0.74<br>0.75<br>0.74<br>0.67<br>0.74<br><br><br></th>
+  </tr>
+</thead>
+</table>
 |Stock|RBF SVM|Decision Tree|MLCP|Nearest Neighbors|Gaussian Process|Random Forest|AdaBoost|Naive Bayes|
 |--------|--- |--  |--  |--- |--- |--- |--  |--  |
 |**AAPL**|0.75|0.67|0.76|0.67|0.75|0.75|0.83|0.60|
