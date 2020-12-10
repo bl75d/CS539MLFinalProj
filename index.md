@@ -151,7 +151,7 @@ Apple company's stock price data in past 40 years was resampled into 6879 (insta
 <img src="https://user-images.githubusercontent.com/21250458/101707897-2d839d80-3a5a-11eb-8e52-49c97928d80a.png" width="60%" class="centerImage">
 </p>
 
-We have attained an accuracy of 39.2%.
+We have attained an accuracy of **39.2%**.
 
 However, in NAV transaction simulation, we have made 90% profits at the 90th day and 50% at the end of 100 days.
 
@@ -176,6 +176,13 @@ In this part of testing results, we only picked the most significant stock "BABA
 ![RAN-NAV1](https://user-images.githubusercontent.com/48306738/101701282-995f0980-3a4c-11eb-9771-e5543526c6d8.png)
 ![RAN-NAV2](https://user-images.githubusercontent.com/48306738/101701287-9a903680-3a4c-11eb-9a06-90196e9834be.png)
 ## CNN
+<p align="center" width="100%">
+<img src="https://user-images.githubusercontent.com/21250458/101707897-2d839d80-3a5a-11eb-8e52-49c97928d80a.png" width="60%" class="centerImage">
+</p>
+
+We have attained an accuracy of **39.2%**.
+
+However, in NAV transaction simulation, we have made 90% profits at the 90th day and 50% at the end of 100 days.
 
 ## LSTM
 <p align="center" width="100%">
