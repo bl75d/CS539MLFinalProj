@@ -31,7 +31,8 @@ The picked eleven stocks are: "AAPL","TSLA","AMZN","GOOG","FB","NIO","BYND","FSL
 # Methods
 
 ## Data Prepocessing
-
+The data is acquired from yahoo finance, for each training and testing process, it calls the API, and returned data contains basic stock price information including open, close, high, low, and volume. Then applying functions from the financial library to generate features of the stocks and shape them to stockdataframe. The features include financial indicators such as MACD, RSI, KDJ which are widely used in stock analysis. In total, this project takes 48 features as input.
+Then applying preprocessing techniques to eliminate missing values, normalize and scale the data, categorize the labels, then reshape the data to sequential format to fit LSTM and CNN models. Splitting data to training and testing data are performed in two ways, shuffling and unshuffling, it will show whether the models have the overfitting issue.
 ### Collection
 To accomplish the task, we will first perform data mining with the Finnhub API. The API allows for straightforward collection of historical stock data at different time intervals. For example, we could collect minute, hourly, daily stock data based on the timeframe we wish to use. This will likely affect the model’s responsiveness to slight market variations and can be a component that we test to compare results. From this data, we can perform various other feature extraction techniques. One such feature is a Simple Moving Average (SMA), a metric used by traders on Wall Street. To add this feature, we select a window size (n) as a parameter and average the stock price over the last n quotes. This methodology can be applied to a variety of indicators detailed further below.
 ### Feature Engineering
