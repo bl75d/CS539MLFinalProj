@@ -203,6 +203,7 @@ However, in NAV transaction simulation, we have made 90% profits at the 90th day
 
 <!--![LSTM-TEST](./test_layer-width_60_Testing.png){:width="500px"}-->
 </p>
+
 # Discussion & Conclusion
 
 ## What can we learn from simple classifications
