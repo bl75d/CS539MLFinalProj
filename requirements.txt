@@ -1,8 +1,9 @@
-pip install numpy
-pip install pandas
-pip install matplotlib
-pip install yfinance
-pip install stock_pandas
-pip install stock_dataframe
-pip install tensorflow
-pip install sklearn
+numpy
+pandas
+matplotlib
+yfinance
+stock_pandas
+stock_dataframe
+tensorflow
+sklearn
+tslearn
