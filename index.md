@@ -203,7 +203,7 @@ However, in NAV transaction simulation, we have made 90% profits at the 90th day
 
 <!--![LSTM-TEST](./test_layer-width_60_Testing.png){:width="500px"}-->
 </p>
-# Discussion
+# Discussion & Conclusion
 
 ## What can we learn from simple classifications
 ### The Time continuty
@@ -211,6 +211,3 @@ The time continuety doesn't effect most of the models that much. As a matter of 
 ### The NAV performance
 From the tables and the NAV figures, we can clear tell that the accuracy of the model, or the score of the mdoel does not have anything to do with NAV. The NAV is about making right decision at a right time. It seems that the models using random split data have a better performance, and since the data are shuffled, they can perfectly solve those flat first, unstable later trend models.
 ## CNN and LSTM
-
-# Conclusion
-We did something
