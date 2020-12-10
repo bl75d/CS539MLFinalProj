@@ -192,7 +192,7 @@ In this part of testing results, we only picked the most significant stock "BABA
 <img src="https://user-images.githubusercontent.com/21250458/101707897-2d839d80-3a5a-11eb-8e52-49c97928d80a.png" width="60%" class="centerImage">
 </p>
 
-We have attained an accuracy of **39.2%**.
+After tuning and choosing parameters with the help of cross validation, we have attained an accuracy of **39.2%**.
 
 However, in NAV transaction simulation, we have made 90% profits at the 90th day and 50% at the end of 100 days.
 
