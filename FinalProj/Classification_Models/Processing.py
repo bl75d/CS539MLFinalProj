@@ -59,7 +59,7 @@ def DataPipeline(symbol_list,period,interval):
         # return raw data--stock and label
         stockdf,labeldf = GetStockData(symbol, period, interval)
         stock = np.asarray(stockdf)
-        # print(stock.shape)
+        print(stock.shape)
         # print(stock)
         label=np.asarray(labeldf)
 
@@ -86,8 +86,6 @@ def GetclosePrice(symbol_list,period,interval,size):
         # price=closeprice[]
         # Trim the price list to fit LSTM output dimension
         price=price[size-1:-1]
-        # print("STOCK PRICE:")
-        # print(price.shape)
         StockPriceDict[symbol]=np.asarray(price).reshape(-1,1)
 
     return StockPriceDict

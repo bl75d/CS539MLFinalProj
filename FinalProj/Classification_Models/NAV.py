@@ -27,7 +27,6 @@ class Nav:
                 self.stockquant=0
                 self.stockvalue=0
                 self.nav=self.cash
-
                 self.tradinghist.append(signal)
                 self.pricehist.append(price)
                 self.navhist.append(self.nav)
@@ -41,46 +40,47 @@ class Nav:
                 self.stockquant = int(self.cash/self.stockprice)
                 self.stockvalue = self.stockquant*self.stockprice
                 self.cash -= self.stockvalue
-
                 self.tradinghist.append(signal)
                 self.pricehist.append(price)
                 self.navhist.append(self.nav)
-
-        #hold
-        elif signal==1:
+        else:
             self.stockprice = price
             self.stockvalue = self.stockquant * self.stockprice
             self.nav=self.cash+self.stockvalue
-
             self.tradinghist.append(signal)
             self.pricehist.append(price)
             self.navhist.append(self.nav)
 
 
+
+# if __name__ == '__main__':
+#     portofolio=Nav(1000)
+#     symbol='TSLA'
+#     stockprice=np.asarray([1,2,3,4,5,6,7,8])
+#     signal=np.asarray([1,2,1,0,2,0,2,0])
+#     for i in range(signal.shape[0]):
+#         portofolio.invest(symbol,signal[i],stockprice[i])
+#         print(portofolio.nav)
+
 # use stock['close'] as the stock price; y_predict is the prediction for X_test, it is the signal for trading
-def Generate_nav(fund,symbol,price,y_predict):
+def Generate_nav(fund,symbol,StockPriceDic,y_predict):
+    price = StockPriceDic[symbol]
     teststart=price.shape[0]-y_predict.shape[0]
     stockprice = price[teststart:price.shape[0]]
-    print(y_predict.shape)
-    print(stockprice.shape[0])
+    #print(y_predict.shape)
     if stockprice.shape[0]==y_predict.shape[0]:
         portofolio = Nav(fund)
         for i in range(stockprice.shape[0]):
-            # print(y_predict.flatten()[i])
-            # print(stockprice.flatten()[i])
+            #print(y_predict.flatten()[i])
+            #print(stockprice.flatten()[i])
             portofolio.invest(symbol,y_predict.flatten()[i],stockprice.flatten()[i])
         # It is the list of NAV during the tesing period
         NetAssetValue=portofolio.navhist
-        Tradinghist=portofolio.tradinghist
-        pricehist=portofolio.pricehist
-        # print(len(NetAssetValue))
-        # print(len(Tradinghist))
-        # print(len(pricehist))
         plt.plot(NetAssetValue)
-        plt.title(symbol)
-        plt.ylabel('Net Asset Value')
+        plt.title('Net Asset Value')
+        plt.ylabel('Dollar')
         plt.xlabel('Day')
-        plt.legend(['Investment Value'], loc='upper left')
+        plt.legend(['Value'], loc='upper left')
         plt.show()
         return portofolio.navhist
     else:

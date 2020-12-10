@@ -7,12 +7,34 @@ from keras.layers import Dropout
 import matplotlib.pyplot as plt
 from NAV import Nav,Generate_nav
 
+def train_test_data(symbol_list):
+    symbol_list = ["AAPL"]
+    # symbol_list = ["AAPL","TSLA","AMZN","GOOG","FB","NIO","BYND","FSLY","MRNA","BABA","BLNK"]
+    # interval_list = ["1m", "2m", "5m", "15m", "30m", "60m", "90m", "1h", "1d", "5d", "1wk", "1mo", "3mo"]
+    # period_list = ["1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", "max"]
+    period = "5y"
+    interval = "1d"
+
+    # size of databrick(eg.10days/hours as a databrick for training)
+    size = 49
+
+    # return a dictionary of stocks, and a dictionary of labels----{stock_symbol:stock_data;label symbol:label_data}
+    StockDict, LabelDict = DataPipeline(symbol_list, period, interval)
+
+    # get price list for testing set to calculate NAV
+    StockPriceDic = GetclosePrice(symbol_list, period, interval, size)
+
+    for symbol in StockDict:
+        X_train, X_test, y_train, y_test = SplitData(StockDict[symbol], LabelDict[symbol], size)
+    return X_train, X_test, y_train, y_test
+
+
 if __name__ == '__main__':
     symbol_list = ["TSLA"]
     # symbol_list = ["AAPL","TSLA","AMZN","GOOG","FB","NIO","BYND","FSLY","MRNA","BABA","BLNK"]
     # interval_list = ["1m", "2m", "5m", "15m", "30m", "60m", "90m", "1h", "1d", "5d", "1wk", "1mo", "3mo"]
     # period_list = ["1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", "max"]
-    period = "5y"
+    period = "2y"
     interval = "1d"
 
     #size of databrick(eg.10days/hours as a databrick for training)
@@ -46,10 +68,10 @@ if __name__ == '__main__':
         model.add(Dropout(0.1))
         # model.add(LSTM(units=50))
         # model.add(Dropout(0.1))
-        model.add(Dense(units=1,activation='softmax'))
-        model.compile(optimizer='adam', loss='mean_squared_error',metrics=['accuracy'])
+        model.add(Dense(units=1,activation='sigmoid'))
+        model.compile(optimizer='adam', loss='binary_crossentropy',metrics=['accuracy'])
 
-        history = model.fit(X_train, y_train, epochs=10, batch_size=32)
+        history = model.fit(X_train, y_train, epochs=300, batch_size=32)
         print(model.summary())
 
         results=model.evaluate(X_test,y_test,batch_size=32)
@@ -83,5 +105,7 @@ if __name__ == '__main__':
         # get price list for testing set to calculate NAV
         prediction=model.predict(X_test)
         y_prediction=prediction[:,-1,:]
+        print(y_prediction)
         # print(y_test)
-        NAV_history=Generate_nav(10000,symbol,StockPriceDic,y_prediction)
+        # NAV_history=Generate_nav(10000,symbol,StockPriceDic,y_test)
+        # NAV_history=Generate_nav(10000,symbol,StockPriceDic,y_prediction)

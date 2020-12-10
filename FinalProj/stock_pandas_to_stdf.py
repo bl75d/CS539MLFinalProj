@@ -26,8 +26,6 @@ def feature_engineering(df):
     return df 
     
 
-
-
 if __name__ == "__main__":
     data = gd.generate_df("AAPL","1y","1d")
     columns = ['open','close','high','low','volume','amount']

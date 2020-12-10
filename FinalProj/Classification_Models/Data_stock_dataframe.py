@@ -239,7 +239,6 @@ def GetStockData(ticker,prd,intvl):
         # label=get_naive_label(stock)
         # label=generate_label(stock)
         label=generate_pct_label(stock)
-        # label=get_price_change(stock)
         stock=stock.drop(columns='label',axis=1)
         return stock,label
 
@@ -253,7 +252,7 @@ def generate_label(stock):
 
         peaks, _ = find_peaks(stock['macd'], height=0)
         valleys, _ = find_peaks(-stock['macd'], height=0)
-        print("************************************")
+
         # # Savitzky–Golay filter
         # # https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.savgol_filter.html
         # xhat = savgol_filter(x, 11, 3)
@@ -278,19 +277,13 @@ def generate_label(stock):
         # print(x[valleys])
 
         # plot the MACD graph land mark the local peak/valley points
-        plt.plot(x)
-        plt.title("Labeled MACD")
-        plt.ylabel("MACD")
-        plt.xlabel("Days")
-        plt.plot(peaks,x[peaks],"x")
-        plt.plot(valleys,x[valleys],"x")
-        plt.plot(np.zeros_like(x),"--",color="gray")
-        plt.show()
+        # plt.plot(x)
+        # plt.plot(peaks,x[peaks],"x")
+        # plt.plot(valleys,x[valleys],"x")
+        # plt.plot(np.zeros_like(x),"--",color="gray")
+        # plt.show()
         #
         plt.plot(y)
-        plt.title("Labeled Stockprice")
-        plt.ylabel("Price")
-        plt.xlabel("Days")
         plt.plot(peaks,y[peaks],"x")
         plt.plot(valleys,y[valleys],"x")
         plt.plot(np.zeros_like(y),"--",color="gray")
@@ -347,32 +340,17 @@ def get_naive_label(stock):
     # print(label)
     return label
 
-def get_price_change(stock):
-        adj_price = np.asarray(stock['close'])
-
-        stock['label'] = 1
-        for i in range(adj_price.shape[0] - 1):
-                stock['label'].iloc[i] = adj_price[i + 1]-adj_price[i]
-
-        # For current last data, there is no label, always predict it as 1(assume next time is a bull)
-        stock['label'].iloc[-1] = 0
-        label = stock['label']
-        return label
-
 def generate_pct_label(stock):
         # adj_price= np.asarray(stock['amount'] / stock['volume'])
         adj_price=np.asarray(stock['close'])
         # print(adj_price)
-        # Use quantile
         price_change_pct=(shift(adj_price, -1)-adj_price)/adj_price
-        p_median=np.quantile(price_change_pct[price_change_pct>0],0.25)
-        n_median=np.quantile(price_change_pct[price_change_pct<0],0.5)
-        # Use median
+        n_median=np.quantile(price_change_pct[price_change_pct<0],0.25)
+        p_median=np.quantile(price_change_pct[price_change_pct>0],0.75)
         # n_median=np.median(price_change_pct[price_change_pct<0])
         # p_median=np.median(price_change_pct[price_change_pct>0])
-
-        # print(n_median)
-        # print(p_median)
+        print(n_median)
+        print(p_median)
         stock['label'] = 1
         for i in range(price_change_pct.shape[0] - 1):
                 if (price_change_pct[i] >= p_median):
@@ -385,11 +363,11 @@ def generate_pct_label(stock):
         # plt.title("Distribution of labels")
         # plt.show()
 
-        # occurrences0 = np.count_nonzero(label == 0)
-        # occurrences1 = np.count_nonzero(label == 1)
-        # occurrences2 = np.count_nonzero(label == 2)
-        # print(occurrences0)
-        # print(occurrences1)
-        # print(occurrences2)
+        occurrences0 = np.count_nonzero(label == 0)
+        occurrences1 = np.count_nonzero(label == 1)
+        occurrences2 = np.count_nonzero(label == 2)
+        print(occurrences0)
+        print(occurrences1)
+        print(occurrences2)
 
         return label
