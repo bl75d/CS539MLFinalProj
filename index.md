@@ -140,7 +140,6 @@ However, in NAV transaction simulation, we have made 90% profits at the 90th day
 ## Simple Classification models
 ### Scores of Eleven Stocks and Using continuly Splite
 The table below shows the scores of all the models under all the stocks using continues split.
-![Con-split](https://user-images.githubusercontent.com/48306738/101673889-c0eeab80-3a25-11eb-88cb-691c61f02cc2.png)
 |Stock|RBF SVM|Decision Tree|MLCP|Nearest Neighbors|Gaussian Process|Random Forest|AdaBoost|Naive Bayes|
 |--------| ---| -- | -------- | ---|---|---|--|--|
 |**AAPL**|0.63|0.54|0.63|0.40|0.61|0.59|0.56|0.25|
