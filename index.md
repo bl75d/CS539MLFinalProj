@@ -156,6 +156,13 @@ However, in NAV transaction simulation, we have made 90% profits at the 90th day
 ### Scores of Eleven Stocks and Eight Models using Shuffled Splite
 The table below shows the scores of all the models under all the stocks using shuffled split.
 ![random-split](https://user-images.githubusercontent.com/48306738/101673961-dbc12000-3a25-11eb-82a6-6dc521a1414a.png)
+|Stock|RBF SVM|Decision Tree|MLCP|Nearest Neighbors|Gaussian Process|Random Forest|AdaBoost|Naive Bayes|
+|--------|--- |--  |--  |--- |--- |--- |--  |--  |
+|**AAPL**|0.75|0.67|0.76|0.67|0.75|0.75|0.83|0.60|
+|**TSLA**|0.77|0.70|0.78|0.71|0.77|0.76|0.57|0.67|
+|**AMZN**|0.74|0.75|0.74|0.70|0.74|0.75|0.78|0.66|
+|**GOOG**|0.72|0.70|0.74|0.67|0.72|0.75|0.82|0.64|
+|**FB**|0.77|0.74|0.77|0.71|0.77|0.78|0.75|0.71|
 ### NAV of All Models based on "BABA" Stock Using Shuffled Splite
 In this part of testing results, we only picked the most significant stock "BABA", which is increasing in a relatively unstable way.
 #### NAV for models without shuffle
