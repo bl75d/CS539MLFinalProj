@@ -39,7 +39,6 @@ if __name__ == "__main__":
     # print(df.where(df.isnull()==True,0))
     # print(stockdf.head(5))
     # print(stockdf.shape)
-    print(feature_engineering(df).shape)
     # df.to_excel("./Shijing_try/data_v2.xlsx",engine="xlsxwriter")
 
 
